@@ -6,13 +6,14 @@
 //
 
 import Foundation
-struct Moview{
-var poster_Path: String
-    var adulto : Bool
-    var fecha_lanzamiento : String
-    var Titulo : String
-    var Popularidad : Double
-    var Video : Bool
-    var Descripcion : String
+struct Movies: Codable{
+    let results : [Movie]?
+}
+struct Movie: Codable{
+    var poster_path: String?
+    var release_date : String
+    var title : String
+    var popularity : Double
+    var overview : String
 }
 

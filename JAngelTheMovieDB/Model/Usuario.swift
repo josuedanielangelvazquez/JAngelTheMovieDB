@@ -9,8 +9,8 @@ import Foundation
 
 struct Usuario : Codable{
     let success : Bool
-    let expires_at : String
-    let request_token : String
+    let expires_at : String?
+    let request_token : String?
     
   /*  enum UsuarioKeys: String, CodingKey{
         case success
@@ -19,7 +19,7 @@ struct Usuario : Codable{
     }*/
 }
 struct UsuarioLogin : Codable{
-    let success : String
+    let username : String
     let password : String
     var request_token : String 
 }
