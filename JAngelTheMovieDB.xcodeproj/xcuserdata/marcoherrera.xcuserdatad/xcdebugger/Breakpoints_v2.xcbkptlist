@@ -7,49 +7,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FE0F4AB6-D1A2-4CC6-B187-71F438081D1D"
+            uuid = "FCA9CC22-5A78-4371-B35C-5E322280D104"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "JAngelTheMovieDB/ViewModel/MovieViewModel.swift"
+            filePath = "JAngelTheMovieDB/Controller/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "parseJSON(data:)"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "FE0F4AB6-D1A2-4CC6-B187-71F438081D1D - c23d7f080993cb7f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "JAngelTheMovieDB.MovieViewModel.parseJSON(data: Foundation.Data) -&gt; Swift.Optional&lt;JAngelTheMovieDB.Usuario&gt;"
-                  moduleName = "JAngelTheMovieDB"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/MacBookMB6/Documents/JosueDanielAngelVazquez/JAngelTheMovieDB/JAngelTheMovieDB/ViewModel/MovieViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "25"
-                  endingLineNumber = "25"
-                  offsetFromSymbolStart = "152">
-               </Location>
-               <Location
-                  uuid = "FE0F4AB6-D1A2-4CC6-B187-71F438081D1D - c23d7f080993ca9e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "JAngelTheMovieDB.MovieViewModel.parseJSON(data: Foundation.Data) -&gt; Swift.Optional&lt;JAngelTheMovieDB.Usuario&gt;"
-                  moduleName = "JAngelTheMovieDB"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/MacBookMB6/Documents/JosueDanielAngelVazquez/JAngelTheMovieDB/JAngelTheMovieDB/ViewModel/MovieViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
-                  offsetFromSymbolStart = "992">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8DB55081-4B6F-4D16-A3E1-B4C9106E8545"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JAngelTheMovieDB/Controller/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "EntrarAction(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -165,6 +165,7 @@
 		FB857C27298832C800FB39E7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FB752D2629883ABA00E91038 /* PelliculasTableViewCell.swift */,
 				FB857BF929882F3000FB39E7 /* ViewController.swift */,
 			);
 			path = Controller;
@@ -174,7 +175,6 @@
 			isa = PBXGroup;
 			children = (
 				FB857BFB29882F3000FB39E7 /* Main.storyboard */,
-				FB752D2629883ABA00E91038 /* PelliculasTableViewCell.swift */,
 				FB752D2729883ABA00E91038 /* PelliculasTableViewCell.xib */,
 			);
 			path = View;

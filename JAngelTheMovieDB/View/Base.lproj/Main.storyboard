@@ -49,7 +49,6 @@
                                         <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                         <connections>
                                             <action selector="EntrarAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1F9-QZ-HSi"/>
-                                            <segue destination="A40-dS-gO2" kind="show" id="1pu-Cf-t0h"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -90,6 +89,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ca5-Tn-gwC"/>
+                    <connections>
+                        <outlet property="Passwordlbl" destination="gPn-dM-t7g" id="9v7-SI-ugv"/>
+                        <outlet property="Usernamelbl" destination="IP7-C0-owb" id="iPj-Ax-ZgE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

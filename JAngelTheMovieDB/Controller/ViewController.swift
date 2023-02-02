@@ -8,17 +8,25 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var movie = MovieViewModel()
+    
+    var usuariologin : UsuarioLogin? = nil
+    var usuariomodel  = ""
+    @IBOutlet weak var Usernamelbl: UITextField!
+    @IBOutlet weak var Passwordlbl: UITextField!
+    
+    var UsuarioLoguin = UsuarioViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        // Do any additional setup after loading the view.
+  usuariomodel = UsuarioLoguin.RequestToken()
+        
     }
     
     
     @IBAction func EntrarAction(_ sender: UIButton) {
-    
-           movie.RequestToken()
+        let result = UsuarioLogin(success: Usernamelbl.text!, password: Passwordlbl.text!, request_token: usuariomodel)
+        print(usuariomodel)
+        UsuarioLoguin.Loguin(var: result)
+          
     }
     
 
