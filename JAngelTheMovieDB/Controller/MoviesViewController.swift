@@ -21,7 +21,7 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        Seccionsegment.tintColor = .white
         collectionView.delegate = self
              collectionView.dataSource = self
              view.addSubview(collectionView)
@@ -90,6 +90,7 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
             cell.Popularitylbl.text = String(movie[indexPath.row].vote_average)
             cell.Fecha_lanzamientolbl.text = movie[indexPath.row].release_date
             cell.overview.text = movie[indexPath.row].overview
+            cell.id = movie[indexPath.row].id
         }
         else{
             var imagenurl = "https://image.tmdb.org/t/p/w1280\(ontv[indexPath.row].poster_path!)"
@@ -101,6 +102,7 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
             cell.Popularitylbl.text = String(movie[indexPath.row].vote_average)
             cell.Fecha_lanzamientolbl.text = ontv[indexPath.row].first_air_date
             cell.overview.text = ontv[indexPath.row].overview
+            cell.id = ontv[indexPath.row].id
         }
         return cell
     }
@@ -136,5 +138,21 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
         
     }
+    
+    @IBAction func BurguerMenuAction(_ sender: Any) {
+        let alert = UIAlertController(title: "What do you want to do?", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "View Profile", style: .default){action in
+            self.Cambiosegues()
+        })
+        alert.addAction(UIAlertAction(title: "Log out", style: .destructive))
+        alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel))
+        
+        self.present(alert, animated: true)
+
+    }
+    func Cambiosegues(){
+        performSegue(withIdentifier: "seguesProfile", sender: nil)
+    }
+    
     
 }

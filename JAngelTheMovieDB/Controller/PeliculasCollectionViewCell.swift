@@ -8,7 +8,7 @@
 import UIKit
 
 class PeliculasCollectionViewCell: UICollectionViewCell {
-    var image = ""
+    var id = 0
     @IBOutlet weak var MovieiMAGE: UIImageView!
     
     @IBOutlet weak var Titlelbl: UILabel!

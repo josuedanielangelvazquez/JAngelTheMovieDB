@@ -18,8 +18,15 @@ struct Usuario : Codable{
         case requestToken = "request_token"
     }*/
 }
+
 struct UsuarioLogin : Codable{
     let username : String
     let password : String
-    var request_token : String 
+    var request_token : String
+}
+struct UsuarioIdLoguin: Codable{
+    var request_token : String
+}
+struct UsuarioLoguinrequest: Codable{
+    var session_id : String
 }

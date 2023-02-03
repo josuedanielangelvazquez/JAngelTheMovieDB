@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FB4621E5298D854C00295C27 /* OnTVViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4621E4298D854C00295C27 /* OnTVViewModel.swift */; };
 		FB4621E7298D858B00295C27 /* OnTV.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4621E6298D858B00295C27 /* OnTV.swift */; };
+		FB4621E9298DBA8300295C27 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4621E8298DBA8300295C27 /* ProfileViewController.swift */; };
 		FB69D5C82989BAF40028D707 /* UsuarioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB69D5C72989BAF40028D707 /* UsuarioViewModel.swift */; };
 		FB752D2D29883C7200E91038 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB752D2C29883C7200E91038 /* Movie.swift */; };
 		FB752D3129886B8200E91038 /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB752D3029886B8200E91038 /* MovieViewModel.swift */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		FB4621E4298D854C00295C27 /* OnTVViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTVViewModel.swift; sourceTree = "<group>"; };
 		FB4621E6298D858B00295C27 /* OnTV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTV.swift; sourceTree = "<group>"; };
+		FB4621E8298DBA8300295C27 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		FB69D5C72989BAF40028D707 /* UsuarioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsuarioViewModel.swift; sourceTree = "<group>"; };
 		FB752D2C29883C7200E91038 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		FB752D3029886B8200E91038 /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				FB857BF929882F3000FB39E7 /* ViewController.swift */,
 				FBEFAE89298C39BD00B1C865 /* MoviesViewController.swift */,
 				FBEFAE8B298C428900B1C865 /* PeliculasCollectionViewCell.swift */,
+				FB4621E8298DBA8300295C27 /* ProfileViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				FB857BFA29882F3000FB39E7 /* ViewController.swift in Sources */,
 				FB857BF629882F3000FB39E7 /* AppDelegate.swift in Sources */,
 				FB857BF829882F3000FB39E7 /* SceneDelegate.swift in Sources */,
+				FB4621E9298DBA8300295C27 /* ProfileViewController.swift in Sources */,
 				FB69D5C82989BAF40028D707 /* UsuarioViewModel.swift in Sources */,
 				FB752D3129886B8200E91038 /* MovieViewModel.swift in Sources */,
 				FB752D2D29883C7200E91038 /* Movie.swift in Sources */,

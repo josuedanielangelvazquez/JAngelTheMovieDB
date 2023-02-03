@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     var usuariologin : UsuarioLogin? = nil
     var usuariomodel  = ""
     var labelerror = "ivalid username and/or password: You did not provide  a valid login"
+    var userLoguinId = ""
     @IBOutlet weak var Usernamelbl: UITextField!
     @IBOutlet weak var Passwordlbl: UITextField!
     

@@ -10,6 +10,7 @@ struct Movies: Codable{
     let results : [Movie]?
 }
 struct Movie: Codable{
+    var id: Int
     var poster_path: String?
     var release_date : String
     var title : String

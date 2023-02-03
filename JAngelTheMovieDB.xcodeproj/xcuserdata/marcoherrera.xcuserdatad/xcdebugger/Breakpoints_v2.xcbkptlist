@@ -14,42 +14,10 @@
             filePath = "JAngelTheMovieDB/Controller/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "FCA9CC22-5A78-4371-B35C-5E322280D104 - 5276ecfab538c9a7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "JAngelTheMovieDB.ViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "JAngelTheMovieDB"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/MacBookMB6/Documents/JosueDanielAngelVazquez/JAngelTheMovieDB/JAngelTheMovieDB/Controller/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23"
-                  offsetFromSymbolStart = "88">
-               </Location>
-               <Location
-                  uuid = "FCA9CC22-5A78-4371-B35C-5E322280D104 - 463e882d4fd47270"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.String) -&gt; () in JAngelTheMovieDB.ViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "JAngelTheMovieDB"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/MacBookMB6/Documents/JosueDanielAngelVazquez/JAngelTheMovieDB/JAngelTheMovieDB/Controller/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
-                  offsetFromSymbolStart = "68">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -62,10 +30,42 @@
             filePath = "JAngelTheMovieDB/Controller/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "EntrarAction(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8DB55081-4B6F-4D16-A3E1-B4C9106E8545 - 3408a39e89d5219"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "JAngelTheMovieDB.ViewController.EntrarAction(__C.UIButton) -&gt; ()"
+                  moduleName = "JAngelTheMovieDB"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/MacBookMB6/Documents/JosueDanielAngelVazquez/JAngelTheMovieDB/JAngelTheMovieDB/Controller/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "100">
+               </Location>
+               <Location
+                  uuid = "8DB55081-4B6F-4D16-A3E1-B4C9106E8545 - 3408a39e89d5219"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "JAngelTheMovieDB.ViewController.EntrarAction(__C.UIButton) -&gt; ()"
+                  moduleName = "JAngelTheMovieDB"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/MacBookMB6/Documents/JosueDanielAngelVazquez/JAngelTheMovieDB/JAngelTheMovieDB/Controller/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "728">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -78,42 +78,10 @@
             filePath = "JAngelTheMovieDB/Controller/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "EntrarAction(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "3D81617F-7C7C-4944-A178-FBB6FB24F601 - 3408a39e89d5236"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "JAngelTheMovieDB.ViewController.EntrarAction(__C.UIButton) -&gt; ()"
-                  moduleName = "JAngelTheMovieDB"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/MacBookMB6/Documents/JosueDanielAngelVazquez/JAngelTheMovieDB/JAngelTheMovieDB/Controller/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "31"
-                  endingLineNumber = "31"
-                  offsetFromSymbolStart = "1028">
-               </Location>
-               <Location
-                  uuid = "3D81617F-7C7C-4944-A178-FBB6FB24F601 - 3609b3ea64c05637"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool) -&gt; () in JAngelTheMovieDB.ViewController.EntrarAction(__C.UIButton) -&gt; ()"
-                  moduleName = "JAngelTheMovieDB"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/MacBookMB6/Documents/JosueDanielAngelVazquez/JAngelTheMovieDB/JAngelTheMovieDB/Controller/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "176">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
