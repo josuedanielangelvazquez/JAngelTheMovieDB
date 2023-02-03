@@ -132,11 +132,11 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" semanticContentAttribute="spatial" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ebz-YE-SG9" customClass="mo">
-                                <rect key="frame" x="16" y="72" width="358" height="32"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JMG-iW-xbv">
+                                <rect key="frame" x="22" y="71" width="332" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="358" id="rbw-wv-7FW"/>
-                                    <constraint firstAttribute="height" constant="31" id="ujG-LD-kSr"/>
+                                    <constraint firstAttribute="height" constant="31" id="5a2-l7-1Wh"/>
+                                    <constraint firstAttribute="width" constant="332" id="FYb-sG-G9K"/>
                                 </constraints>
                                 <segments>
                                     <segment title="Popular"/>
@@ -144,24 +144,26 @@
                                     <segment title="On TV"/>
                                     <segment title="Airing Today"/>
                                 </segments>
-                                <color key="selectedSegmentTintColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+                                <connections>
+                                    <action selector="AccionMostrar:" destination="A40-dS-gO2" eventType="valueChanged" id="8Jr-ru-XFg"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="oop-sz-dNE"/>
                         <color key="backgroundColor" red="0.037117946892976761" green="0.099741406738758087" blue="0.082635171711444855" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ebz-YE-SG9" firstAttribute="top" secondItem="oop-sz-dNE" secondAttribute="top" constant="25" id="1lU-xK-UID"/>
-                            <constraint firstItem="ebz-YE-SG9" firstAttribute="leading" secondItem="oop-sz-dNE" secondAttribute="leading" constant="16" id="RBa-cA-ziK"/>
-                            <constraint firstItem="oop-sz-dNE" firstAttribute="trailing" secondItem="ebz-YE-SG9" secondAttribute="trailing" constant="16" id="Vpt-RM-Kfr"/>
-                            <constraint firstItem="MLa-Cv-09e" firstAttribute="top" secondItem="ebz-YE-SG9" secondAttribute="bottom" constant="29" id="epu-Ep-acB"/>
+                            <constraint firstItem="MLa-Cv-09e" firstAttribute="top" secondItem="JMG-iW-xbv" secondAttribute="bottom" constant="30" id="15Q-Tx-kUt"/>
+                            <constraint firstItem="JMG-iW-xbv" firstAttribute="top" secondItem="oop-sz-dNE" secondAttribute="top" constant="24" id="WJ9-Yz-tce"/>
                             <constraint firstItem="oop-sz-dNE" firstAttribute="bottom" secondItem="MLa-Cv-09e" secondAttribute="bottom" constant="13" id="i1h-ak-wh5"/>
                             <constraint firstItem="MLa-Cv-09e" firstAttribute="leading" secondItem="oop-sz-dNE" secondAttribute="leading" constant="16" id="mI8-iI-zF7"/>
                             <constraint firstItem="oop-sz-dNE" firstAttribute="trailing" secondItem="MLa-Cv-09e" secondAttribute="trailing" constant="16" id="nEC-2h-sL0"/>
+                            <constraint firstItem="oop-sz-dNE" firstAttribute="trailing" secondItem="JMG-iW-xbv" secondAttribute="trailing" constant="36" id="tx0-X3-ahF"/>
+                            <constraint firstItem="JMG-iW-xbv" firstAttribute="leading" secondItem="oop-sz-dNE" secondAttribute="leading" constant="22" id="wdJ-Kh-bg9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BKW-qO-51g"/>
                     <connections>
-                        <outlet property="Seccionsegment" destination="ebz-YE-SG9" id="aGL-xM-XVi"/>
+                        <outlet property="Seccionsegment" destination="JMG-iW-xbv" id="FLY-SL-N1b"/>
                         <outlet property="collectionView" destination="MLa-Cv-09e" id="k3q-0F-gx3"/>
                     </connections>
                 </viewController>
@@ -192,9 +194,6 @@
         <image name="|" width="128" height="128"/>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="tertiarySystemGroupedBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

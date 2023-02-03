@@ -18,7 +18,7 @@ class PeliculasCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var overview: UILabel!
     
     override func awakeFromNib() {
-        super.awakeFromNib()
+    
         // Initialization code
     }
 
