@@ -50,5 +50,31 @@ class OnTVViewModel{
             }
         }.resume()
     }
+    func getOnTvById(IdOntV : Int, DetailTV: @escaping (OnTVDetail)->Void){
+        let urlSession = URLSession.shared
+        let url = URL(string: "https://api.themoviedb.org/3/tv/\(IdOntV)?api_key=9a12fe4896e3bf5b77905c0eefa45759&language=en-US")
+        urlSession.dataTask(with: url!){
+            data, response, error in
+            if let safeData = data{
+                let json = self.parseJSONTVDetail(data: safeData)
+                DetailTV(json!)
+            }
+            else{
+                print(error?.localizedDescription)
+            }
+        }.resume()
+    }
+    func parseJSONTVDetail(data : Data)->OnTVDetail?{
+        let decodable = JSONDecoder()
+        do{
+            let requestToken =  try decodable.decode(OnTVDetail.self, from: data)
+            let ontvdetail = OnTVDetail(id: requestToken.id, poster_path: requestToken.poster_path, first_air_date: requestToken.first_air_date, name: requestToken.name, vote_average: requestToken.vote_average, overview: requestToken.overview, number_of_episodes: requestToken.number_of_episodes, number_of_seasons: requestToken.number_of_seasons, production_companies: requestToken.production_companies)
+            return ontvdetail
+        }
+        catch let error{
+            print("Error en el decoder\(error.localizedDescription)")
+            return nil
+        }
+    }
 }
 

@@ -17,3 +17,19 @@ struct Movie: Codable{
     var vote_average : Double
     var overview : String
 }
+struct MovieDetail: Codable{
+    let id: Int
+    let poster_path: String?
+    let release_date : String
+    let title : String
+    let vote_average : Double
+    let overview : String
+    let adult: Bool
+    let original_language: String
+    let production_companies: [ProductionCompanies]
+}
+struct ProductionCompanies: Codable{
+    let id: Int
+    let logo_path: String?
+    let name :String
+}

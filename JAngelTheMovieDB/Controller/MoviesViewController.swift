@@ -7,13 +7,14 @@
 
 import UIKit
 
-class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
    let PeliculasViewModel = MovieViewModel()
     let ontvViewModel = OnTVViewModel()
     var ontv = [OnTV]()
     var movie = [Movie]()
     var TVORMovie = "MOVIE"
     var count = 0
+    var idMovieTv = 0
     
     @IBOutlet weak var Seccionsegment: UISegmentedControl!
     
@@ -105,6 +106,26 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
             cell.id = ontv[indexPath.row].id
         }
         return cell
+    }
+    
+     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+           if TVORMovie.elementsEqual("MOVIE"){
+             self.idMovieTv = movie[indexPath.row].id
+             performSegue(withIdentifier: "seguesmovie", sender: nil)
+             print(self.idMovieTv)
+         }
+         else{
+             self.idMovieTv = ontv[indexPath.row].id
+            performSegue(withIdentifier: "seguesmovie", sender: nil)
+             print(self.idMovieTv)
+         }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "seguesmovie"{
+            let detail = segue.destination as! DetailViewController
+            detail.IdDetail = self.idMovieTv
+            detail.tipo = self.TVORMovie
+        }
     }
     
 

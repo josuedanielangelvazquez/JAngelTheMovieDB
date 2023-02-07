@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB0136A52992B5BF0017AF85 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0136A42992B5BF0017AF85 /* DetailViewController.swift */; };
+		FB0136A82992E0630017AF85 /* CompaniesProduccionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0136A62992E0630017AF85 /* CompaniesProduccionCollectionViewCell.swift */; };
+		FB0136A92992E0630017AF85 /* CompaniesProduccionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB0136A72992E0630017AF85 /* CompaniesProduccionCollectionViewCell.xib */; };
 		FB4621E5298D854C00295C27 /* OnTVViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4621E4298D854C00295C27 /* OnTVViewModel.swift */; };
 		FB4621E7298D858B00295C27 /* OnTV.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4621E6298D858B00295C27 /* OnTV.swift */; };
 		FB4621E9298DBA8300295C27 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4621E8298DBA8300295C27 /* ProfileViewController.swift */; };
@@ -46,6 +49,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FB0136A42992B5BF0017AF85 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		FB0136A62992E0630017AF85 /* CompaniesProduccionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesProduccionCollectionViewCell.swift; sourceTree = "<group>"; };
+		FB0136A72992E0630017AF85 /* CompaniesProduccionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompaniesProduccionCollectionViewCell.xib; sourceTree = "<group>"; };
 		FB4621E4298D854C00295C27 /* OnTVViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTVViewModel.swift; sourceTree = "<group>"; };
 		FB4621E6298D858B00295C27 /* OnTV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTV.swift; sourceTree = "<group>"; };
 		FB4621E8298DBA8300295C27 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -172,10 +178,12 @@
 		FB857C27298832C800FB39E7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FB0136A62992E0630017AF85 /* CompaniesProduccionCollectionViewCell.swift */,
 				FB857BF929882F3000FB39E7 /* ViewController.swift */,
 				FBEFAE89298C39BD00B1C865 /* MoviesViewController.swift */,
 				FBEFAE8B298C428900B1C865 /* PeliculasCollectionViewCell.swift */,
 				FB4621E8298DBA8300295C27 /* ProfileViewController.swift */,
+				FB0136A42992B5BF0017AF85 /* DetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -185,6 +193,7 @@
 			children = (
 				FB857BFB29882F3000FB39E7 /* Main.storyboard */,
 				FBFF0F35298C4413002D5B94 /* PeliculasCollectionViewCell.xib */,
+				FB0136A72992E0630017AF85 /* CompaniesProduccionCollectionViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -297,6 +306,7 @@
 				FBFF0F36298C4413002D5B94 /* PeliculasCollectionViewCell.xib in Resources */,
 				FB857BFF29882F3100FB39E7 /* Assets.xcassets in Resources */,
 				FB857BFD29882F3000FB39E7 /* Main.storyboard in Resources */,
+				FB0136A92992E0630017AF85 /* CompaniesProduccionCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB0136A52992B5BF0017AF85 /* DetailViewController.swift in Sources */,
 				FB752D3329886C2E00E91038 /* Usuario.swift in Sources */,
 				FBEFAE8D298C428900B1C865 /* PeliculasCollectionViewCell.swift in Sources */,
 				FBEFAE8A298C39BD00B1C865 /* MoviesViewController.swift in Sources */,
@@ -332,6 +343,7 @@
 				FB752D3129886B8200E91038 /* MovieViewModel.swift in Sources */,
 				FB752D2D29883C7200E91038 /* Movie.swift in Sources */,
 				FB4621E7298D858B00295C27 /* OnTV.swift in Sources */,
+				FB0136A82992E0630017AF85 /* CompaniesProduccionCollectionViewCell.swift in Sources */,
 				FB4621E5298D854C00295C27 /* OnTVViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

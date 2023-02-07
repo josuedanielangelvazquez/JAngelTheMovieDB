@@ -18,3 +18,16 @@ struct OnTV: Codable{
     var overview : String
 }
 
+struct OnTVDetail: Codable{
+    let id: Int
+    let poster_path: String?
+    let first_air_date: String?
+    let name: String?
+    let vote_average: Double?
+    let overview : String
+    let number_of_episodes: Int
+    let number_of_seasons: Int
+    let production_companies: [ProductionCompanies]
+
+}
+

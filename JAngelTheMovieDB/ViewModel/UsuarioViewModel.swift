@@ -8,7 +8,7 @@
 import Foundation
 class UsuarioViewModel{
     var usuarioModel: Usuario? = nil
- 
+    let defaults = UserDefaults.standard
     func RequestToken(Tokenrequest : @escaping (String)->Void){
         let urlSession = URLSession.shared
         let url = URL(string: "https://api.themoviedb.org/3/authentication/token/new?api_key=9a12fe4896e3bf5b77905c0eefa45759")
@@ -27,9 +27,6 @@ class UsuarioViewModel{
         do{
             let requestToken = try decodable.decode(Usuario.self, from: data)
             let usuario = Usuario(success: requestToken.success, expires_at: requestToken.expires_at, request_token: requestToken.request_token)
-            print(usuario.success)
-            print(usuario.expires_at)
-            print(usuario.request_token)
             return usuario
         }
         catch let error{
