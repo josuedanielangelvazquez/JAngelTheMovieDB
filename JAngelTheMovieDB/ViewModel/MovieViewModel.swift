@@ -83,6 +83,22 @@ class MovieViewModel{
             return nil
         }
     }
+    func GetFavoritesMovies(FavoritesMovies : @escaping(Movies)->Void){
+        let defaults = UserDefaults.standard
+        let idsession = defaults.string(forKey: "idsession")
+        let urlSession = URLSession.shared
+        
+     /*   let url = URL(string: "https://api.themoviedb.org/3/account/{account_id}/favorite/movies?api_key=9a12fe4896e3bf5b77905c0eefa45759&session_id=\(idsession!)")*/
+        let url = URL(string: "https://api.themoviedb.org/3/movie/top_rated?api_key=9a12fe4896e3bf5b77905c0eefa45759&language=en-US&page=1")
+        urlSession.dataTask(with: url!){
+            data, response, error in
+            if let safeData = data {
+                let json = self.parseJSON(data: safeData)
+                FavoritesMovies(json!)
+            }
+            else{print(error?.localizedDescription)}
+        }.resume()
+    }
    
 }
 

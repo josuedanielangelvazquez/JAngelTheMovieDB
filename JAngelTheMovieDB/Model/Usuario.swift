@@ -27,6 +27,13 @@ struct UsuarioLogin : Codable{
 struct UsuarioIdLoguin: Codable{
     var request_token : String
 }
+ 
 struct UsuarioLoguinrequest: Codable{
     var session_id : String
 }
+struct UserDetailsCount: Codable{
+    var id: Int
+    var username : String
+    
+}
+

@@ -8,8 +8,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+    var usuarioidloguin : UsuarioIdLoguin? = nil
     var usuariologin : UsuarioLogin? = nil
+    let defaults = UserDefaults.standard
+
     var usuariomodel  = ""
     var labelerror = "ivalid username and/or password: You did not provide  a valid login"
     var userLoguinId = ""
@@ -19,11 +21,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var messageerrorlbl: UILabel!
     
     var UsuarioLoguin = UsuarioViewModel()
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         UsuarioLoguin.RequestToken { token in
             self.usuariomodel = token
+            self.usuarioidloguin = UsuarioIdLoguin(request_token: token)
         }
+        
     }
     
     
@@ -32,7 +37,13 @@ class ViewController: UIViewController {
         UsuarioLoguin.Loguin(usuario: result) { validacion in
             if validacion == true{
                 DispatchQueue.main.async {
+                    self.UsuarioLoguin.GetSessionId(usuariologuin: self.usuarioidloguin!){idsession in
+                        self.defaults.set(idsession, forKey: "idsession")
+                       
+
+                    }
                     self.performSegue(withIdentifier: "seguesmovies", sender: nil)
+                    
                 }
               
             }

@@ -8,7 +8,6 @@
 import Foundation
 class UsuarioViewModel{
     var usuarioModel: Usuario? = nil
-    let defaults = UserDefaults.standard
     func RequestToken(Tokenrequest : @escaping (String)->Void){
         let urlSession = URLSession.shared
         let url = URL(string: "https://api.themoviedb.org/3/authentication/token/new?api_key=9a12fe4896e3bf5b77905c0eefa45759")
@@ -54,4 +53,37 @@ class UsuarioViewModel{
         }.resume()
         
     }
+    func GetSessionId(usuariologuin : UsuarioIdLoguin, idsession: @escaping (String?)->Void){
+        let decoedr = JSONDecoder()
+        let baseurl = "https://api.themoviedb.org/3/authentication/session/new?api_key=9a12fe4896e3bf5b77905c0eefa45759"
+        let url = URL(string: baseurl)
+        var urlRequest = URLRequest(url: url!)
+        urlRequest.httpMethod = "POST"
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = try! JSONEncoder().encode(usuariologuin)
+        //SE OBTIENE RESPUESTA
+        let urlSession = URLSession.shared
+        urlSession.dataTask(with: urlRequest){
+            data, response, error in
+            if let safeData = data{
+                let json = self.parseJSONsessionid(data: safeData)
+                idsession(json!.session_id)
+                
+            }
+        }.resume()
+    }
+    func parseJSONsessionid(data: Data)-> UsuarioLoguinrequest?{
+        let decodable = JSONDecoder()
+        do{
+            let requesttoken = try decodable.decode(UsuarioLoguinrequest.self
+                                                    , from: data)
+            let usuarioidsession = UsuarioLoguinrequest(session_id: requesttoken.session_id)
+            return usuarioidsession
+        }
+        catch let error{
+            print("Error en el decoder \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
 }

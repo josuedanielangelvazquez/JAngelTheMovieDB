@@ -7,12 +7,57 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
+
+    @IBOutlet weak var username: UILabel!
+    
+    @IBOutlet weak var CollectionView: UICollectionView!
+    var movieviewmodel = MovieViewModel()
+    var profileviewmodel = profileViewModel()
+    var movie = [Movie]()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        CollectionView.delegate = self
+        CollectionView.dataSource = self
+        view.addSubview(CollectionView)
+        self.CollectionView.register(UINib(nibName: "PeliculasCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "Moviecell")
+        loadData()
+        loadDataprofile()
         // Do any additional setup after loading the view.
+    }
+    func loadData(){
+        movieviewmodel.GetFavoritesMovies { moviefavorites in
+            DispatchQueue.main.async {
+                self.movie = moviefavorites.results as! [Movie]
+                self.CollectionView.reloadData()
+            }
+        }
+    }
+    func loadDataprofile(){
+        profileviewmodel.GetInfoprofile { infoprofile in
+            DispatchQueue.main.async {
+                self.username.text = "@\(infoprofile.username)"
+            }
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return movie.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath as IndexPath) as! PeliculasCollectionViewCell
+        var imageurl = "https://image.tmdb.org/t/p/w1280\(movie[indexPath.row].poster_path!)"
+                  var url = URL(string: imageurl)
+                  if let data = try? Data(contentsOf: url!){
+                      cell.MovieiMAGE.image = UIImage(data: data)
+                  }
+        cell.id = movie[indexPath.row].id
+        cell.Titlelbl.text = movie[indexPath.row].title
+        cell.Popularitylbl.text = String(movie[indexPath.row].vote_average)
+        cell.Fecha_lanzamientolbl.text = movie[indexPath.row].release_date
+        cell.overview.text = movie[indexPath.row].overview
+        return cell
     }
     
 
