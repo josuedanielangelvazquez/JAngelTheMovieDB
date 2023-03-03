@@ -16,23 +16,32 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     var movieviewmodel = MovieViewModel()
     var profileviewmodel = profileViewModel()
     var movie = [Movie]()
+    var countmovie = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         CollectionView.delegate = self
         CollectionView.dataSource = self
         view.addSubview(CollectionView)
         self.CollectionView.register(UINib(nibName: "PeliculasCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "Moviecell")
-        loadData()
         loadDataprofile()
+        loadData()
         // Do any additional setup after loading the view.
     }
     func loadData(){
-        movieviewmodel.GetFavoritesMovies { moviefavorites in
+      let result =  movieviewmodel.getPopular { MoviesObjects in
+                DispatchQueue.main.async {
+                self.movie = MoviesObjects.results as! [Movie]
+                self.CollectionView.reloadData()
+                    self.countmovie = self.movie.count
+            }
+        }
+        /*  movieviewmodel.GetFavoritesMovies { moviefavorites in
             DispatchQueue.main.async {
                 self.movie = moviefavorites.results as! [Movie]
                 self.CollectionView.reloadData()
+                
             }
-        }
+        }*/
     }
     func loadDataprofile(){
         profileviewmodel.GetInfoprofile { infoprofile in
@@ -42,7 +51,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movie.count
+        return countmovie
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -22,7 +22,8 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Seccionsegment.tintColor = .white
+        Seccionsegment.tintColor = .red
+        Seccionsegment.selectedSegmentTintColor = .green
         collectionView.delegate = self
              collectionView.dataSource = self
              view.addSubview(collectionView)
@@ -86,7 +87,7 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
             if let data = try? Data(contentsOf: url!){
                 cell.MovieiMAGE.image = UIImage(data: data)
             }
-            
+            cell.layer.cornerRadius = 10
             cell.Titlelbl.text = movie[indexPath.row].title
             cell.Popularitylbl.text = String(movie[indexPath.row].vote_average)
             cell.Fecha_lanzamientolbl.text = movie[indexPath.row].release_date
