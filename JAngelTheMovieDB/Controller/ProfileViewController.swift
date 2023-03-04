@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     var profileviewmodel = profileViewModel()
     var movie = [Movie]()
     var countmovie = 0
+    let defaults = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
         CollectionView.delegate = self
@@ -24,24 +25,30 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         view.addSubview(CollectionView)
         self.CollectionView.register(UINib(nibName: "PeliculasCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "Moviecell")
         loadDataprofile()
+        
         loadData()
         // Do any additional setup after loading the view.
     }
     func loadData(){
-      let result =  movieviewmodel.getPopular { MoviesObjects in
+        let idsession = defaults.string(forKey: "idsession")
+
+     /* let result =  movieviewmodel.getPopular(){ MoviesObjects in
                 DispatchQueue.main.async {
                 self.movie = MoviesObjects.results as! [Movie]
                 self.CollectionView.reloadData()
                     self.countmovie = self.movie.count
             }
-        }
-        /*  movieviewmodel.GetFavoritesMovies { moviefavorites in
+        }*/
+        
+        print(idsession)
+        movieviewmodel.GetFavoritesMovies(idsession: idsession!) { moviefavorites in
             DispatchQueue.main.async {
                 self.movie = moviefavorites.results as! [Movie]
                 self.CollectionView.reloadData()
+                self.countmovie = self.movie.count
                 
             }
-        }*/
+        }
     }
     func loadDataprofile(){
         profileviewmodel.GetInfoprofile { infoprofile in
@@ -55,17 +62,23 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath as IndexPath) as! PeliculasCollectionViewCell
-        var imageurl = "https://image.tmdb.org/t/p/w1280\(movie[indexPath.row].poster_path!)"
-                  var url = URL(string: imageurl)
-                  if let data = try? Data(contentsOf: url!){
-                      cell.MovieiMAGE.image = UIImage(data: data)
-                  }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Moviecell", for: indexPath as IndexPath) as! PeliculasCollectionViewCell
+        DispatchQueue.main.async {
+            var imageurl = "https://image.tmdb.org/t/p/w1280\(self.movie[indexPath.row].poster_path!)"
+                      var url = URL(string: imageurl)
+                      if let data = try? Data(contentsOf: url!){
+                          cell.MovieiMAGE.image = UIImage(data: data)
+                          
+                      }
+        }
+        
         cell.id = movie[indexPath.row].id
         cell.Titlelbl.text = movie[indexPath.row].title
         cell.Popularitylbl.text = String(movie[indexPath.row].vote_average)
         cell.Fecha_lanzamientolbl.text = movie[indexPath.row].release_date
         cell.overview.text = movie[indexPath.row].overview
+        cell.layer.cornerRadius = 10
+        
         return cell
     }
     

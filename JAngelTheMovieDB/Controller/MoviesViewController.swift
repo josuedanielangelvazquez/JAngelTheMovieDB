@@ -16,6 +16,7 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     var count = 0
     var idMovieTv = 0
     
+    
     @IBOutlet weak var Seccionsegment: UISegmentedControl!
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -29,17 +30,22 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
              view.addSubview(collectionView)
         Seccionsegment.tintColor = .white
         self.collectionView.register(UINib(nibName: "PeliculasCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "Moviecell")
-     loadDataPopularMovie()
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        loadDataPopularMovie()
+
     }
     func loadDataPopularMovie(){
         TVORMovie = "MOVIE"
         let result = PeliculasViewModel.getPopular(){ MoviesJSON in
             DispatchQueue.main.async {
                 self.movie = MoviesJSON.results as! [Movie]
-                self.collectionView.reloadData()
                 self.count = self.movie.count
+                self.collectionView.reloadData()
+
             }
+
         }
     }
     func loadDataTopRated(){
@@ -82,10 +88,17 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Moviecell", for: indexPath as IndexPath) as!  PeliculasCollectionViewCell
         if TVORMovie.elementsEqual("MOVIE"){
-            var imageurl = "https://image.tmdb.org/t/p/w1280\(movie[indexPath.row].poster_path!)"
-            var url = URL(string: imageurl)
-            if let data = try? Data(contentsOf: url!){
-                cell.MovieiMAGE.image = UIImage(data: data)
+            DispatchQueue.main.async { 
+                var imageurl = "https://image.tmdb.org/t/p/w1280\(self.movie[indexPath.row].poster_path!)"
+                let url = URL(string: imageurl)
+                
+                if let data = try? Data(contentsOf: url!){
+                  
+                        cell.MovieiMAGE.image = UIImage(data: data)
+
+            }
+         
+                
             }
             cell.layer.cornerRadius = 10
             cell.Titlelbl.text = movie[indexPath.row].title
@@ -93,21 +106,52 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
             cell.Fecha_lanzamientolbl.text = movie[indexPath.row].release_date
             cell.overview.text = movie[indexPath.row].overview
             cell.id = movie[indexPath.row].id
+            cell.Addfavoritesbutton.addTarget(self, action: #selector(AddFavorite), for: .touchUpInside)
+            cell.Addfavoritesbutton.tag = indexPath.row
+            cell.Addfavoritesbutton.isHidden = false
         }
         else{
-            var imagenurl = "https://image.tmdb.org/t/p/w1280\(ontv[indexPath.row].poster_path!)"
-            var url = URL(string: imagenurl)!
-            if let data = try? Data(contentsOf: url){
-                cell.MovieiMAGE.image = UIImage(data: data)
+            DispatchQueue.main.async {
+                let imagenurl = "https://image.tmdb.org/t/p/w1280\(self.ontv[indexPath.row].poster_path!)"
+                let url = URL(string: imagenurl)!
+                if let data = try? Data(contentsOf: url){
+                    cell.MovieiMAGE.image = UIImage(data: data)
+                }
             }
+            
             cell.Titlelbl.text = ontv[indexPath.row].name
             cell.Popularitylbl.text = String(movie[indexPath.row].vote_average)
             cell.Fecha_lanzamientolbl.text = ontv[indexPath.row].first_air_date
             cell.overview.text = ontv[indexPath.row].overview
             cell.id = ontv[indexPath.row].id
+            cell.Addfavoritesbutton.isHidden = true
+        
         }
         return cell
     }
+    
+    @objc func AddFavorite(_ sender:UIButton){
+        print("funcionando")
+        let Movie = self.movie[sender.tag].id
+        let addfavoritemoviemodel = AddFavoriteMovie(media_type: "movie", media_id: Movie, favorite: true)
+        PeliculasViewModel.addfavMovies(Moviemodel: addfavoritemoviemodel) { ValidacionAddMovieFav in
+            DispatchQueue.main.async {
+                if ValidacionAddMovieFav.success != true{
+                   let alert = UIAlertController(title: "Error", message: "Error al agregar a favorites, intente mas tarde", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                    self.present(alert, animated: true)
+                    
+                }
+                else{
+                    let alert = UIAlertController(title: "Correcto", message: "\(self.movie[sender.tag].title) se agrego a favoritos", preferredStyle: .alert)
+                     alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                     self.present(alert, animated: true)
+                }
+            }
+          
+        }
+    }
+   
     
      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
            if TVORMovie.elementsEqual("MOVIE"){

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -26,14 +27,28 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yBH-3K-IKt">
                                         <rect key="frame" x="0.0" y="0.0" width="170" height="195"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bookmark.slash" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="oJz-qF-Yex">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bookmark.slash" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="oJz-qF-Yex">
                                                 <rect key="frame" x="0.0" y="0.0" width="170" height="195"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="135-S3-3qt">
+                                                <rect key="frame" x="126" y="0.0" width="44" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="9QJ-RI-lZY"/>
+                                                    <constraint firstAttribute="width" constant="44" id="jay-HK-UJv"/>
+                                                </constraints>
+                                                <color key="tintColor" red="0.99996417760848999" green="0.0064254063181579113" blue="0.13283562660217285" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="suit.heart.fill" catalog="system" title=" "/>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="135-S3-3qt" secondAttribute="bottom" constant="163" id="4fQ-91-qSk"/>
                                             <constraint firstAttribute="height" constant="195" id="HPv-rr-nIi"/>
+                                            <constraint firstItem="135-S3-3qt" firstAttribute="top" secondItem="yBH-3K-IKt" secondAttribute="top" id="Jqo-Qx-hSu"/>
+                                            <constraint firstItem="135-S3-3qt" firstAttribute="leading" secondItem="yBH-3K-IKt" secondAttribute="leading" constant="126" id="VRm-ep-qVB"/>
+                                            <constraint firstAttribute="trailing" secondItem="135-S3-3qt" secondAttribute="trailing" id="tVc-cn-Cp8"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JI4-8A-w1i">
@@ -111,10 +126,12 @@
             </constraints>
             <size key="customSize" width="170" height="314"/>
             <connections>
+                <outlet property="Addfavoritesbutton" destination="135-S3-3qt" id="JE2-Hf-hJa"/>
                 <outlet property="Fecha_lanzamientolbl" destination="qkd-vO-K1u" id="hns-DU-PYM"/>
                 <outlet property="MovieiMAGE" destination="oJz-qF-Yex" id="CpP-ha-22l"/>
                 <outlet property="Popularitylbl" destination="VEJ-PF-WVc" id="L0f-VY-KJI"/>
                 <outlet property="Titlelbl" destination="JI4-8A-w1i" id="kxH-Jo-FNn"/>
+                <outlet property="ViewMod" destination="yBH-3K-IKt" id="ZhJ-fj-D49"/>
                 <outlet property="overview" destination="fOk-KZ-c88" id="4jR-kA-1hM"/>
             </connections>
             <point key="canvasLocation" x="43.076923076923073" y="114.45497630331754"/>
@@ -123,6 +140,7 @@
     <resources>
         <image name="bookmark.slash" catalog="system" width="113" height="128"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
+        <image name="suit.heart.fill" catalog="system" width="128" height="107"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

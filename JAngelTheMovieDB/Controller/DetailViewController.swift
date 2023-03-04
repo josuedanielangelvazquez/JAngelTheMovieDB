@@ -10,6 +10,7 @@ import Foundation
 class DetailViewController: UIViewController, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource
 {
     
+    @IBOutlet weak var ButtonAddFavMod: UIButton!
     @IBOutlet weak var postherimage: UIImageView!
     @IBOutlet weak var Titlelbl: UILabel!
     @IBOutlet weak var releaseDatelbl: UILabel!
@@ -39,10 +40,41 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         loadData()
         
     }
+    
+    @IBAction func AddFaoritesmovies(_ sender: Any) {
+        let modeladdfavorite = AddFavoriteMovie(media_type: "movie", media_id: IdDetail, favorite: true)
+        
+      let result = movieViewModel.addfavMovies(Moviemodel: modeladdfavorite) { ObjectMovie in
+          DispatchQueue.main.async {
+              if ObjectMovie.success == false {
+                
+               let alert =   UIAlertController(title: "Error", message: "Sucedio un Error, Intentalo mas tarde", preferredStyle: .alert)
+                  alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                  self.present(alert, animated: true)
+              }
+              else{
+                  let alert =   UIAlertController(title: "Correct", message: "\(self.Titlelbl.text!) se agrego a favoritos", preferredStyle: .alert)
+                     alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                     self.present(alert, animated: true)
+              }
+          }
+         
+        }
+    }
+    
     func loadData(){
         if tipo.elementsEqual("MOVIE"){
+            ButtonAddFavMod.isHidden = false
             movieViewModel.GetMoviebyId(idMovie: IdDetail) { MovieDetail in
                 DispatchQueue.main.async { [self] in
+                    DispatchQueue.main.async {
+                        let imageurl = "https://image.tmdb.org/t/p/w1280\(MovieDetail.poster_path!)"
+                        let url = URL(string: imageurl)
+                        if let data = try? Data(contentsOf: url!){
+                            self.postherimage.image = UIImage(data: data)
+                        }
+                    }
+                   
                     self.Titlelbl.text = MovieDetail.title
                     self.releaseDatelbl.text = MovieDetail.release_date
                     self.voteAvaragelbl.text = String(MovieDetail.vote_average)
@@ -54,11 +86,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
                     }
                     self.originallenguagelbl.text = "Lenguaje: \(MovieDetail.original_language)"
                     self.overviewlbl.text = MovieDetail.overview
-                    var imageurl = "https://image.tmdb.org/t/p/w1280\(MovieDetail.poster_path!)"
-                    var url = URL(string: imageurl)
-                    if let data = try? Data(contentsOf: url!){
-                        self.postherimage.image = UIImage(data: data)
-                    }
+                
                     self.productionCompanies = MovieDetail.production_companies as! [ProductionCompanies]
                     collectionView.reloadData()
                     
@@ -67,6 +95,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
             
         }
         else{
+            ButtonAddFavMod.isHidden = true
             ontvviewmodel.getOnTvById(IdOntV: IdDetail) { OnTVDetail in
                 DispatchQueue.main.async {
                     self.Titlelbl.text = OnTVDetail.name

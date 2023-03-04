@@ -33,3 +33,16 @@ struct ProductionCompanies: Codable{
     let logo_path: String?
     let name :String
 }
+struct AddFavoriteMovie : Codable{
+      let media_type: String
+      let media_id: Int
+      let favorite: Bool
+}
+
+struct MovieFavoriteVal: Codable{
+    
+        let success: Bool
+        let status_code: Int
+        let status_message : String
+    }
+

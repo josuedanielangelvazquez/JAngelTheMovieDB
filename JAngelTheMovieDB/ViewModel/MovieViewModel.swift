@@ -83,13 +83,23 @@ class MovieViewModel{
             return nil
         }
     }
-    func GetFavoritesMovies(FavoritesMovies : @escaping(Movies)->Void){
-        let defaults = UserDefaults.standard
-        let idsession = defaults.string(forKey: "idsession")
+    func parseJsonFavoriteVal(data: Data)-> MovieFavoriteVal?{
+        let decodable = JSONDecoder()
+        do{
+            let requestToken = try decodable.decode(MovieFavoriteVal.self, from: data)
+            let ModelMovieFavorite =  MovieFavoriteVal(success: requestToken.success, status_code: requestToken.status_code, status_message: requestToken.status_message)
+          print(ModelMovieFavorite)
+            return ModelMovieFavorite
+        }
+        catch let error{
+            print("Error en el decoder\(error.localizedDescription)")
+            return nil
+        }
+    }
+    func GetFavoritesMovies(idsession : String, FavoritesMovies : @escaping(Movies)->Void){
         let urlSession = URLSession.shared
-        
-     /*   let url = URL(string: "https://api.themoviedb.org/3/account/{account_id}/favorite/movies?api_key=9a12fe4896e3bf5b77905c0eefa45759&session_id=\(idsession!)")*/
-        let url = URL(string: "https://api.themoviedb.org/3/movie/top_rated?api_key=9a12fe4896e3bf5b77905c0eefa45759&language=en-US&page=1")
+        let url = URL(string: "https://api.themoviedb.org/3/account/0/favorite/movies?language=en-US&sort_by=created_at.asc&api_key=9a12fe4896e3bf5b77905c0eefa45759&session_id=48dbaafbc657d1cca8dae0f63614acefbae2d362")
+     /*   let url = URL(string: "https://api.themoviedb.org/3/movie/top_rated?api_key=9a12fe4896e3bf5b77905c0eefa45759&language=en-US&page=1")*/
         urlSession.dataTask(with: url!){
             data, response, error in
             if let safeData = data {
@@ -98,6 +108,26 @@ class MovieViewModel{
             }
             else{print(error?.localizedDescription)}
         }.resume()
+    }
+    func addfavMovies(Moviemodel : AddFavoriteMovie, ValMovieFav : @escaping(MovieFavoriteVal)->Void){
+        DispatchQueue.main.async {
+            let decoder = JSONDecoder()
+            let URLbase = "https://api.themoviedb.org/3/account/0/favorite?api_key=9a12fe4896e3bf5b77905c0eefa45759&session_id=dc649728590d5c88a0dadaa49da999a6cd9c44a9"
+            let url = URL(string: URLbase)!
+            var urlrequest = URLRequest(url: url)
+            urlrequest.httpMethod = "POST"
+            urlrequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            urlrequest.httpBody = try! JSONEncoder().encode(Moviemodel)
+            let urlsession = URLSession.shared
+            urlsession.dataTask(with: urlrequest){data, response, error in
+                if let safedata = data{
+                    let json = self.parseJsonFavoriteVal(data: safedata)
+                    ValMovieFav(json!)
+                }
+            }.resume()
+       
+        }
+        
     }
    
 }
