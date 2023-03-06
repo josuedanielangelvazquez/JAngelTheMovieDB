@@ -36,4 +36,9 @@ struct UserDetailsCount: Codable{
     var username : String
     
 }
-
+struct UsuarioDeleteSession: Codable{
+    var session_id: String
+}
+struct UsuarioDeleteSessionval: Codable{
+    var success: Bool
+}

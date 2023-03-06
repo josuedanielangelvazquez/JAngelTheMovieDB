@@ -20,7 +20,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     @IBOutlet weak var overviewlbl: UILabel!
     
     @IBOutlet  var collectionView: UICollectionView!
-    
+    var segues = ""
     var IdDetail = 0
     var tipo = ""
     let movieViewModel = MovieViewModel()
@@ -63,8 +63,14 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     }
     
     func loadData(){
-        if tipo.elementsEqual("MOVIE"){
+        if segues != ""{
+            ButtonAddFavMod.isHidden = true
+        }
+        else {
             ButtonAddFavMod.isHidden = false
+
+        }
+        if tipo.elementsEqual("MOVIE"){
             movieViewModel.GetMoviebyId(idMovie: IdDetail) { MovieDetail in
                 DispatchQueue.main.async { [self] in
                     DispatchQueue.main.async {

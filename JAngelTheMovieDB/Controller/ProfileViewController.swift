@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     var profileviewmodel = profileViewModel()
     var movie = [Movie]()
     var countmovie = 0
+    var idMovieTv = 0
     let defaults = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,14 +33,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     func loadData(){
         let idsession = defaults.string(forKey: "idsession")
 
-     /* let result =  movieviewmodel.getPopular(){ MoviesObjects in
-                DispatchQueue.main.async {
-                self.movie = MoviesObjects.results as! [Movie]
-                self.CollectionView.reloadData()
-                    self.countmovie = self.movie.count
-            }
-        }*/
-        
         print(idsession)
         movieviewmodel.GetFavoritesMovies(idsession: idsession!) { moviefavorites in
             DispatchQueue.main.async {
@@ -78,9 +71,26 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         cell.Fecha_lanzamientolbl.text = movie[indexPath.row].release_date
         cell.overview.text = movie[indexPath.row].overview
         cell.layer.cornerRadius = 10
+        cell.buttonfav.isHidden = true
         
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+         
+            self.idMovieTv = movie[indexPath.row].id
+            performSegue(withIdentifier: "seguesDetailFav", sender: nil)
+            print(self.idMovieTv)
+     
+   }
+   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if segue.identifier == "seguesDetailFav"{
+           let detail = segue.destination as! DetailViewController
+           detail.IdDetail = self.idMovieTv
+           detail.tipo = "MOVIE"
+           detail.segues = "fav"
+       }
+   }
+   
     
 
     /*

@@ -85,6 +85,38 @@ class UsuarioViewModel{
             return nil
         }
     }
+    func parseJSONDeleteSession(data: Data)->UsuarioDeleteSessionval?{
+        let decodable = JSONDecoder()
+        do{
+            let requestval = try decodable.decode(UsuarioDeleteSessionval.self, from: data)
+            let deletesessionval = UsuarioDeleteSessionval(success: requestval.success)
+            return deletesessionval
+        }
+        catch let error{
+            print("Error en el decoder \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
+    func DeleteSession(usuariodeletesession : UsuarioDeleteSession, Objectdeletesession: @escaping (Bool)->Void){
+        let decoder = JSONDecoder()
+        let baseurl = "https://api.themoviedb.org/3/authentication/session?api_key=9a12fe4896e3bf5b77905c0eefa45759"
+        let url = URL(string: baseurl)
+        var urlrequest = URLRequest(url: url!)
+        urlrequest.httpMethod = "DELETE"
+        urlrequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlrequest.httpBody = try! JSONEncoder().encode(usuariodeletesession)
+        let urlsession = URLSession.shared
+        urlsession.dataTask(with: urlrequest){ [self]
+            data, error, response in
+            if let safedata = data{
+                let json = parseJSONDeleteSession(data: safedata)
+                Objectdeletesession(json!.success)
+            }
+        }.resume()
+        }
+        
+    }
     
     
-}
+

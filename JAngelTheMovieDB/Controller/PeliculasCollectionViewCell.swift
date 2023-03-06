@@ -11,6 +11,7 @@ class PeliculasCollectionViewCell: UICollectionViewCell {
     var id = 0
     @IBOutlet weak var MovieiMAGE: UIImageView!
     @IBOutlet weak var ViewMod: UIView!
+    @IBOutlet weak var buttonfav: UIButton!
     
     @IBOutlet weak var Titlelbl: UILabel!
     @IBOutlet weak var Fecha_lanzamientolbl: UILabel!

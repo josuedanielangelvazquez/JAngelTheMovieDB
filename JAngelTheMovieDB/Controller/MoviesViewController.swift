@@ -10,11 +10,14 @@ import UIKit
 class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
    let PeliculasViewModel = MovieViewModel()
     let ontvViewModel = OnTVViewModel()
+    let usuarioviewmodel = UsuarioViewModel()
     var ontv = [OnTV]()
     var movie = [Movie]()
     var TVORMovie = "MOVIE"
     var count = 0
     var idMovieTv = 0
+    let defaults = UserDefaults.standard
+
     
     
     @IBOutlet weak var Seccionsegment: UISegmentedControl!
@@ -79,6 +82,21 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
     }
     
+    func LogOutSession(){
+        let idsession = defaults.string(forKey: "idsession")
+        var Usuariodeletesesion = UsuarioDeleteSession(session_id: idsession!)
+        var deletesession = usuarioviewmodel.DeleteSession(usuariodeletesession: Usuariodeletesesion) { Valsession in
+            DispatchQueue.main.async {
+                if Valsession == true{
+                self.navigationController?.popViewController(animated: true)
+                    print(Valsession)
+                }
+                else{
+                    print("Ocurrio un error")
+                }
+            }
+        }
+    }
 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -88,18 +106,15 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Moviecell", for: indexPath as IndexPath) as!  PeliculasCollectionViewCell
         if TVORMovie.elementsEqual("MOVIE"){
-            DispatchQueue.main.async { 
+            DispatchQueue.main.async {
                 var imageurl = "https://image.tmdb.org/t/p/w1280\(self.movie[indexPath.row].poster_path!)"
                 let url = URL(string: imageurl)
-                
                 if let data = try? Data(contentsOf: url!){
-                  
-                        cell.MovieiMAGE.image = UIImage(data: data)
+                cell.MovieiMAGE.image = UIImage(data: data)
+            }
+    
+            }
 
-            }
-         
-                
-            }
             cell.layer.cornerRadius = 10
             cell.Titlelbl.text = movie[indexPath.row].title
             cell.Popularitylbl.text = String(movie[indexPath.row].vote_average)
@@ -137,7 +152,7 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         PeliculasViewModel.addfavMovies(Moviemodel: addfavoritemoviemodel) { ValidacionAddMovieFav in
             DispatchQueue.main.async {
                 if ValidacionAddMovieFav.success != true{
-                   let alert = UIAlertController(title: "Error", message: "Error al agregar a favorites, intente mas tarde", preferredStyle: .alert)
+                   let alert = UIAlertController(title: "Error", message: "Error al agregar a favoritos, intente mas tarde", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: .default))
                     self.present(alert, animated: true)
                     
@@ -193,10 +208,13 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
             break
         case 1:
             loadDataTopRated()
+            break
         case 2:
             loadDataOnTV()
+            break
         case 3:
             loadDataAiringToday()
+            break
             
             
         default:
@@ -210,7 +228,10 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         alert.addAction(UIAlertAction(title: "View Profile", style: .default){action in
             self.Cambiosegues()
         })
-        alert.addAction(UIAlertAction(title: "Log out", style: .destructive))
+        alert.addAction(UIAlertAction(title: "Log out", style: .destructive){action in
+            self.LogOutSession()
+            
+        })
         alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel))
         
         self.present(alert, animated: true)
