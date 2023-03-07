@@ -19,6 +19,9 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     @IBOutlet weak var originallenguagelbl: UILabel!
     @IBOutlet weak var overviewlbl: UILabel!
     
+    @IBOutlet weak var loaddata: UIActivityIndicatorView!
+    
+    
     @IBOutlet  var collectionView: UICollectionView!
     var segues = ""
     var IdDetail = 0
@@ -29,6 +32,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     
     
     override func viewDidLoad() {
+        loaddata.startAnimating()
         postherimage.layer.cornerRadius = 20
         super.viewDidLoad()
         collectionView.delegate = self
@@ -42,13 +46,29 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         
     }
     
+    @IBAction func AddFavoritemMoviesPersistence(_ sender: Any) {
+        let MovieModel = Movie(id: IdDetail, release_date: releaseDatelbl.text!, title: Titlelbl.text!, vote_average: Double(voteAvaragelbl.text!)!, overview: overviewlbl.text!)
+      let MovieViewmodel =  movieViewModel.PersistenceAddFavMovies(Movie: MovieModel)
+        if MovieViewmodel == true {
+            let alert =   UIAlertController(title: "Correct", message: "Se agrego correctamente", preferredStyle: .alert)
+               alert.addAction(UIAlertAction(title: "Ok", style: .default))
+               self.present(alert, animated: true)
+        }
+        else{
+            let alert =   UIAlertController(title: "Correct", message: "Se agrego correctamente", preferredStyle: .alert)
+               alert.addAction(UIAlertAction(title: "Ok", style: .default))
+               self.present(alert, animated: true)
+        }
+    }
+    
+    
+    
     @IBAction func AddFaoritesmovies(_ sender: Any) {
         let modeladdfavorite = AddFavoriteMovie(media_type: "movie", media_id: IdDetail, favorite: true)
         
       let result = movieViewModel.addfavMovies(Moviemodel: modeladdfavorite) { ObjectMovie in
           DispatchQueue.main.async {
               if ObjectMovie.success == false {
-                
                let alert =   UIAlertController(title: "Error", message: "Sucedio un Error, Intentalo mas tarde", preferredStyle: .alert)
                   alert.addAction(UIAlertAction(title: "Ok", style: .default))
                   self.present(alert, animated: true)
@@ -75,6 +95,8 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
             movieViewModel.GetMoviebyId(idMovie: IdDetail) { MovieDetail in
                 DispatchQueue.main.async { [self] in
                     DispatchQueue.main.async {
+                        self.loaddata.isHidden = true
+                        self.loaddata.stopAnimating() 
                         let imageurl = "https://image.tmdb.org/t/p/w1280\(MovieDetail.poster_path!)"
                         let url = URL(string: imageurl)
                         if let data = try? Data(contentsOf: url!){
@@ -104,14 +126,15 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
             ButtonAddFavMod.isHidden = true
             ontvviewmodel.getOnTvById(IdOntV: IdDetail) { OnTVDetail in
                 DispatchQueue.main.async {
+                    self.loaddata.isHidden = true
                     self.Titlelbl.text = OnTVDetail.name
                     self.releaseDatelbl.text = OnTVDetail.first_air_date
                     self.voteAvaragelbl.text = String(OnTVDetail.vote_average!)
                     self.AdultBolllbl.text = "No. episodios:  \(OnTVDetail.number_of_episodes)"
                     self.originallenguagelbl.text = "No. temporadas: \(OnTVDetail.number_of_seasons)"
                     self.overviewlbl.text = OnTVDetail.overview
-                    var imageurl = "https://image.tmdb.org/t/p/w1280\(OnTVDetail.poster_path!)"
-                    var url = URL(string: imageurl)
+                    let imageurl = "https://image.tmdb.org/t/p/w1280\(OnTVDetail.poster_path!)"
+                    let url = URL(string: imageurl)
                     if let data = try? Data(contentsOf: url!){
                         self.postherimage.image = UIImage(data: data)
                     }
@@ -129,13 +152,15 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductionCompaniescell", for: indexPath as IndexPath) as! CompaniesProduccionCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductionCompaniescell", for: indexPath as IndexPath) as! CompaniesProduccionCollectionViewCell
         cell.layer.cornerRadius = 10
-        var link = productionCompanies[indexPath.row].logo_path
-        var imageurl2 = "https://www.asimetrica.org/wp-content/uploads/2019/03/no-imagen.jpg"
+       
+        let link = productionCompanies[indexPath.row].logo_path
+        let imageurl2 = "https://www.asimetrica.org/wp-content/uploads/2019/03/no-imagen.jpg"
         var url = URL(string: "")
+      
         if link != nil{
-            var imageurl = "https://image.tmdb.org/t/p/w1280\(link!)"
+            let imageurl = "https://image.tmdb.org/t/p/w1280\(link!)"
              url = URL(string: imageurl)!}
         
         else{

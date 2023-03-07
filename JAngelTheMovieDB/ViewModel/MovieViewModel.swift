@@ -6,9 +6,12 @@
 //
 
 import Foundation
-
+import CoreData
+import UIKit
 class MovieViewModel{
+    let appdelegate = UIApplication.shared.delegate as! AppDelegate
     
+
     func getPopular(Movie : @escaping (Movies)->Void){
         let moviemodel : Movie? = nil
         let urlSession = URLSession.shared
@@ -109,6 +112,57 @@ class MovieViewModel{
             else{print(error?.localizedDescription)}
         }.resume()
     }
+    
+    func PersistenceAddFavMovies(Movie : Movie)->Bool{
+        do{
+            let context = appdelegate.persistentContainer.viewContext
+            let entidad = NSEntityDescription.entity(forEntityName: "PersistenceMovies", in: context)
+            let MovieCoreData = NSManagedObject(entity: entidad!, insertInto: context)
+            MovieCoreData.setValue(Movie.id, forKey: "idmovie")
+            MovieCoreData.setValue(Movie.title, forKey: "title")
+            MovieCoreData.setValue(Movie.overview, forKey: "overview")
+            MovieCoreData.setValue(Movie.poster_path, forKey: "postherPath")
+            MovieCoreData.setValue(Movie.release_date, forKey: "releaseDate")
+            MovieCoreData.setValue(Movie.vote_average, forKey: "vote_average")
+            try!context.save()
+            return true
+        }
+        catch let error{
+            print(error.localizedDescription)
+            return false
+        }
+    }
+    
+    func PersistenceGetFavorites()->Bool{
+        let context = appdelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "PersistenceMovies")
+        
+        do{
+            let moviess = try context.fetch(request)
+            for objetosmovies in  movies as! [NSManagedObject]{
+                let MovieiD = objetosmovies.value(forKey: "idmovie")
+                let Title = objetosmovies.value(forKey: "title")
+                let overview = objetosmovies.value(forKey: "overview")
+                let postherPath = objetosmovies.value(forKey: "postherPath")
+                let releaseDate = objetosmovies.value(forKey: "releaseDate")
+                let vote_average = objetosmovies.value(forKey: "vote_average")
+                
+                var Movie = try! Movie(id: MovieiD as! Int, release_date: releaseDate as! String, title: Title as! String, vote_average: vote_average as! Double, overview: overview as! String)
+                
+                
+            }
+        }
+        catch let error{
+            print(error.localizedDescription)
+            return false
+        }
+        
+        
+        
+        
+        return true
+    }
+    
     func addfavMovies(Moviemodel : AddFavoriteMovie, ValMovieFav : @escaping(MovieFavoriteVal)->Void){
         DispatchQueue.main.async {
             let decoder = JSONDecoder()
@@ -127,6 +181,7 @@ class MovieViewModel{
             }.resume()
        
         }
+        
         
     }
    

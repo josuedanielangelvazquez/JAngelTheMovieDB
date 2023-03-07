@@ -80,6 +80,7 @@
                                     <constraint firstAttribute="height" constant="20" id="Zvt-Cp-gR9"/>
                                     <constraint firstAttribute="width" constant="30" id="xFg-MB-owu"/>
                                 </constraints>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -103,7 +104,7 @@
                     <connections>
                         <outlet property="Passwordlbl" destination="gPn-dM-t7g" id="9v7-SI-ugv"/>
                         <outlet property="Usernamelbl" destination="IP7-C0-owb" id="iPj-Ax-ZgE"/>
-                        <outlet property="loaddata" destination="H4R-xm-dvt" id="L7m-Qv-gJo"/>
+                        <outlet property="load" destination="H4R-xm-dvt" id="LEH-Rc-OCP"/>
                         <outlet property="messageerrorlbl" destination="AfQ-MH-9im" id="1Y9-Au-hVQ"/>
                         <segue destination="A40-dS-gO2" kind="show" identifier="seguesmovies" id="ZoO-Kh-T0t"/>
                     </connections>
@@ -259,18 +260,35 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Me-Cr-cXt">
                                         <rect key="frame" x="0.0" y="21" width="358" height="20.333333333333329"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ve-IX-adP">
-                                                <rect key="frame" x="0.0" y="0.0" width="256" height="20.333333333333332"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ve-IX-adP">
+                                                <rect key="frame" x="0.0" y="0.0" width="226" height="20.333333333333332"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="226" id="imn-Rj-z8W"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.34117650989999998" green="0.70588237050000002" blue="0.40392160420000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcC-ND-6rF">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpm-2R-6Gg" userLabel="I">
+                                                <rect key="frame" x="226" y="0.0" width="30" height="20.333333333333332"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="u68-ZZ-Vvc"/>
+                                                </constraints>
+                                                <color key="tintColor" red="0.024986568838357925" green="0.034933164715766907" blue="0.01406348031014204" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" image="arrow.down.heart.fill" catalog="system" title=" ">
+                                                    <color key="baseForegroundColor" red="0.99198395013809204" green="0.010972866788506508" blue="0.22121068835258484" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="AddFavoritemMoviesPersistence:" destination="xq9-X8-zCw" eventType="touchUpInside" id="Y2E-eW-VsZ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcC-ND-6rF">
                                                 <rect key="frame" x="256" y="0.0" width="30" height="20.333333333333332"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="30" id="y8t-NC-Lr9"/>
                                                 </constraints>
-                                                <color key="tintColor" systemColor="systemRedColor"/>
+                                                <color key="tintColor" red="0.99996417760848999" green="0.0064254063181579113" blue="0.13283562660217285" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="suit.heart.fill" catalog="system" title=" "/>
                                                 <connections>
@@ -345,17 +363,14 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPL-Cw-uBr">
-                                <rect key="frame" x="162" y="190" width="71" height="144"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="xXu-2R-t80">
+                                <rect key="frame" x="167" y="199" width="57" height="47"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="68" id="MTo-BZ-eUe"/>
+                                    <constraint firstAttribute="width" constant="57" id="Eek-mm-Ot6"/>
+                                    <constraint firstAttribute="height" constant="47" id="n9x-HL-OYs"/>
                                 </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title=" ">
-                                    <backgroundConfiguration key="background" image="play.circle" catalog="system" imageContentMode="scaleAspectFit"/>
-                                </buttonConfiguration>
-                            </button>
+                                <color key="color" red="0.98431372640000003" green="0.98431372640000003" blue="0.98431372640000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lto-8X-bAi"/>
                         <color key="backgroundColor" red="0.047058824450000002" green="0.082352943720000002" blue="0.1019607931" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -364,15 +379,15 @@
                             <constraint firstItem="rF2-7f-yc4" firstAttribute="top" secondItem="AIU-0P-PQl" secondAttribute="bottom" constant="23.329999999999998" id="EnJ-2I-wUe"/>
                             <constraint firstItem="lto-8X-bAi" firstAttribute="trailing" secondItem="rF2-7f-yc4" secondAttribute="trailing" constant="16" id="HAd-Ag-gan"/>
                             <constraint firstItem="lto-8X-bAi" firstAttribute="trailing" secondItem="AIU-0P-PQl" secondAttribute="trailing" constant="16" id="HUH-Xd-pos"/>
-                            <constraint firstItem="LPL-Cw-uBr" firstAttribute="top" secondItem="lto-8X-bAi" secondAttribute="top" constant="131" id="HmH-s8-8wS"/>
                             <constraint firstItem="lto-8X-bAi" firstAttribute="bottom" secondItem="rF2-7f-yc4" secondAttribute="bottom" constant="34" id="IO4-6O-av4"/>
+                            <constraint firstItem="xXu-2R-t80" firstAttribute="top" secondItem="lto-8X-bAi" secondAttribute="top" constant="140" id="JOc-rX-68b"/>
                             <constraint firstItem="lto-8X-bAi" firstAttribute="trailing" secondItem="wzR-7e-DWx" secondAttribute="trailing" constant="16" id="MMi-j3-tMB"/>
-                            <constraint firstItem="LPL-Cw-uBr" firstAttribute="leading" secondItem="lto-8X-bAi" secondAttribute="leading" constant="162" id="dH6-wa-BLM"/>
+                            <constraint firstItem="lto-8X-bAi" firstAttribute="trailing" secondItem="xXu-2R-t80" secondAttribute="trailing" constant="166" id="Pws-vG-ekg"/>
                             <constraint firstItem="wzR-7e-DWx" firstAttribute="leading" secondItem="lto-8X-bAi" secondAttribute="leading" constant="16" id="fZn-Fv-bxq"/>
+                            <constraint firstItem="xXu-2R-t80" firstAttribute="leading" secondItem="lto-8X-bAi" secondAttribute="leading" constant="167" id="l9S-i8-Sx6"/>
                             <constraint firstItem="rF2-7f-yc4" firstAttribute="leading" secondItem="lto-8X-bAi" secondAttribute="leading" constant="16" id="nhf-dx-O3Q"/>
-                            <constraint firstItem="AIU-0P-PQl" firstAttribute="top" secondItem="LPL-Cw-uBr" secondAttribute="bottom" constant="124" id="rRc-cc-LTP"/>
                             <constraint firstItem="wzR-7e-DWx" firstAttribute="top" secondItem="tpj-NW-UVJ" secondAttribute="topMargin" id="tjz-LX-rpo"/>
-                            <constraint firstItem="lto-8X-bAi" firstAttribute="trailing" secondItem="LPL-Cw-uBr" secondAttribute="trailing" constant="157" id="wbi-IG-4ox"/>
+                            <constraint firstItem="AIU-0P-PQl" firstAttribute="top" secondItem="xXu-2R-t80" secondAttribute="bottom" constant="212" id="yc5-0G-Dbs"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zjT-cs-LsG"/>
@@ -381,6 +396,7 @@
                         <outlet property="ButtonAddFavMod" destination="jcC-ND-6rF" id="kVg-Qs-Iby"/>
                         <outlet property="CollectionView" destination="rF2-7f-yc4" id="qa3-JE-pe8"/>
                         <outlet property="Titlelbl" destination="Jle-PI-A45" id="EfR-Cm-We2"/>
+                        <outlet property="loaddata" destination="xXu-2R-t80" id="K83-cA-ckP"/>
                         <outlet property="originallenguagelbl" destination="2GU-9g-Xri" id="Rt4-p8-IXE"/>
                         <outlet property="overviewlbl" destination="aF8-Ao-F5u" id="yXe-Cq-72F"/>
                         <outlet property="postherimage" destination="wzR-7e-DWx" id="1lz-gj-zap"/>
@@ -390,7 +406,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3cQ-gT-Wyn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2628.2442748091603" y="-653.52112676056345"/>
+            <point key="canvasLocation" x="2627.4418604651164" y="-654.07725321888415"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="7lf-H6-cUh">
@@ -531,9 +547,9 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="TheMovieImage" width="256" height="256"/>
+        <image name="arrow.down.heart.fill" catalog="system" width="128" height="107"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>
         <image name="person.circle.fill" catalog="system" width="128" height="123"/>
-        <image name="play.circle" catalog="system" width="128" height="123"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="suit.heart.fill" catalog="system" width="128" height="107"/>
         <image name="|" width="128" height="128"/>

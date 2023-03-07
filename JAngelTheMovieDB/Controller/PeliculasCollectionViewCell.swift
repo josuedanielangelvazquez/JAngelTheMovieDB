@@ -20,7 +20,11 @@ class PeliculasCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var Addfavoritesbutton: UIButton!
     @IBOutlet weak var overview: UILabel!
     
+    @IBOutlet weak var loaddata: UIActivityIndicatorView!
+    
+    
     override func awakeFromNib() {
+        loaddata.startAnimating()
         ViewMod.layer.cornerRadius = 10
         MovieiMAGE.layer.cornerRadius = 10
         // Initialization code

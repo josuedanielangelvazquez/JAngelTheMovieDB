@@ -119,11 +119,14 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
             cell.Addfavoritesbutton.addTarget(self, action: #selector(AddFavorite), for: .touchUpInside)
             cell.Addfavoritesbutton.tag = indexPath.row
             cell.Addfavoritesbutton.isHidden = false
-            var imageurl = "https://image.tmdb.org/t/p/w1280\(self.movie[indexPath.row].poster_path!)"
+            let imageurl = "https://image.tmdb.org/t/p/w1280\(self.movie[indexPath.row].poster_path!)"
             let url = URL(string: imageurl)
             DispatchQueue.global().async {
             if let data = try? Data(contentsOf: url!){
                 cell.MovieiMAGE.image = UIImage(data: data)
+                cell.loaddata.isHidden = true
+                cell.loaddata.stopAnimating()
+                
             }
             }
 
@@ -139,6 +142,8 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
                 let imagenurl = "https://image.tmdb.org/t/p/w1280\(self.ontv[indexPath.row].poster_path!)"
                 let url = URL(string: imagenurl)!
                 if let data = try? Data(contentsOf: url){
+                    cell.loaddata.isHidden = true
+                    cell.loaddata.stopAnimating()
                     cell.MovieiMAGE.image = UIImage(data: data)
                 }
             }
