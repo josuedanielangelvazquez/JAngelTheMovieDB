@@ -29,6 +29,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     
     
     override func viewDidLoad() {
+        postherimage.layer.cornerRadius = 20
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -84,7 +85,6 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
                     self.Titlelbl.text = MovieDetail.title
                     self.releaseDatelbl.text = MovieDetail.release_date
                     self.voteAvaragelbl.text = String(MovieDetail.vote_average)
-                    // self.AdultBolllbl.text = String(MovieDetail.adult)
                     if MovieDetail.adult == false{
                         self.AdultBolllbl.text = "Mayor de 18 años"}
                     else {
@@ -95,7 +95,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
                 
                     self.productionCompanies = MovieDetail.production_companies as! [ProductionCompanies]
                     collectionView.reloadData()
-                    
+                    print(MovieDetail.id)
                     
                 }}
             
@@ -118,6 +118,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
                     self.productionCompanies = OnTVDetail.production_companies as! [ProductionCompanies]
                     self.collectionView.reloadData()
                     
+                    
                 }
             }
         }
@@ -129,9 +130,8 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductionCompaniescell", for: indexPath as IndexPath) as! CompaniesProduccionCollectionViewCell
+        cell.layer.cornerRadius = 10
         var link = productionCompanies[indexPath.row].logo_path
-        print(productionCompanies[indexPath.row].logo_path)
-      
         var imageurl2 = "https://www.asimetrica.org/wp-content/uploads/2019/03/no-imagen.jpg"
         var url = URL(string: "")
         if link != nil{
@@ -143,6 +143,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         }
          
         if let data = try? Data(contentsOf: url!){
+
             cell.LogoCompaniesimage.image = UIImage(data: data)
             cell.namelbl.text = productionCompanies[indexPath.row].name
 

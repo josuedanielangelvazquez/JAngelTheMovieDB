@@ -55,16 +55,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Moviecell", for: indexPath as IndexPath) as! PeliculasCollectionViewCell
-        DispatchQueue.main.async {
-            var imageurl = "https://image.tmdb.org/t/p/w1280\(self.movie[indexPath.row].poster_path!)"
-                      var url = URL(string: imageurl)
-                      if let data = try? Data(contentsOf: url!){
-                          cell.MovieiMAGE.image = UIImage(data: data)
-                          
-                      }
-        }
         
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Moviecell", for: indexPath as IndexPath) as! PeliculasCollectionViewCell
         cell.id = movie[indexPath.row].id
         cell.Titlelbl.text = movie[indexPath.row].title
         cell.Popularitylbl.text = String(movie[indexPath.row].vote_average)
@@ -72,6 +64,17 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         cell.overview.text = movie[indexPath.row].overview
         cell.layer.cornerRadius = 10
         cell.buttonfav.isHidden = true
+        var imageurl = "https://image.tmdb.org/t/p/w1280\(self.movie[indexPath.row].poster_path!)"
+                  var url = URL(string: imageurl)
+                  if let data = try? Data(contentsOf: url!){
+                      DispatchQueue.main.async {
+          
+                          cell.MovieiMAGE.image = UIImage(data: data)
+                          
+                      }
+        }
+        
+     
         
         return cell
     }

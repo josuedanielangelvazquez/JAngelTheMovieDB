@@ -35,13 +35,15 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.collectionView.register(UINib(nibName: "PeliculasCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "Moviecell")
         // Do any additional setup after loading the view.
     }
-    override func viewWillAppear(_ animated: Bool) {
+
+    override func viewDidAppear(_ animated: Bool) {
         loadDataPopularMovie()
 
     }
+
     func loadDataPopularMovie(){
         TVORMovie = "MOVIE"
-        let result = PeliculasViewModel.getPopular(){ MoviesJSON in
+         PeliculasViewModel.getPopular(){ MoviesJSON in
             DispatchQueue.main.async {
                 self.movie = MoviesJSON.results as! [Movie]
                 self.count = self.movie.count
@@ -105,16 +107,9 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Moviecell", for: indexPath as IndexPath) as!  PeliculasCollectionViewCell
+        
+  
         if TVORMovie.elementsEqual("MOVIE"){
-            DispatchQueue.main.async {
-                var imageurl = "https://image.tmdb.org/t/p/w1280\(self.movie[indexPath.row].poster_path!)"
-                let url = URL(string: imageurl)
-                if let data = try? Data(contentsOf: url!){
-                cell.MovieiMAGE.image = UIImage(data: data)
-            }
-    
-            }
-
             cell.layer.cornerRadius = 10
             cell.Titlelbl.text = movie[indexPath.row].title
             cell.Popularitylbl.text = String(movie[indexPath.row].vote_average)
@@ -124,9 +119,23 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
             cell.Addfavoritesbutton.addTarget(self, action: #selector(AddFavorite), for: .touchUpInside)
             cell.Addfavoritesbutton.tag = indexPath.row
             cell.Addfavoritesbutton.isHidden = false
+            var imageurl = "https://image.tmdb.org/t/p/w1280\(self.movie[indexPath.row].poster_path!)"
+            let url = URL(string: imageurl)
+            DispatchQueue.global().async {
+            if let data = try? Data(contentsOf: url!){
+                cell.MovieiMAGE.image = UIImage(data: data)
+            }
+            }
+
         }
         else{
-            DispatchQueue.main.async {
+            cell.Titlelbl.text = ontv[indexPath.row].name
+            cell.Popularitylbl.text = String(movie[indexPath.row].vote_average)
+            cell.Fecha_lanzamientolbl.text = ontv[indexPath.row].first_air_date
+            cell.overview.text = ontv[indexPath.row].overview
+            cell.id = ontv[indexPath.row].id
+            cell.Addfavoritesbutton.isHidden = true
+            DispatchQueue.global().async {
                 let imagenurl = "https://image.tmdb.org/t/p/w1280\(self.ontv[indexPath.row].poster_path!)"
                 let url = URL(string: imagenurl)!
                 if let data = try? Data(contentsOf: url){
@@ -134,12 +143,7 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
                 }
             }
             
-            cell.Titlelbl.text = ontv[indexPath.row].name
-            cell.Popularitylbl.text = String(movie[indexPath.row].vote_average)
-            cell.Fecha_lanzamientolbl.text = ontv[indexPath.row].first_air_date
-            cell.overview.text = ontv[indexPath.row].overview
-            cell.id = ontv[indexPath.row].id
-            cell.Addfavoritesbutton.isHidden = true
+           
         
         }
         return cell
