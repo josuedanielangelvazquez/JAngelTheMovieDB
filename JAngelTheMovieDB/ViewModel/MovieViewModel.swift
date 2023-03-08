@@ -138,6 +138,7 @@ class MovieViewModel{
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "PersistenceMovies")
         
         do{
+            let movies = [Movies]()
             let moviess = try context.fetch(request)
             for objetosmovies in  movies as! [NSManagedObject]{
                 let MovieiD = objetosmovies.value(forKey: "idmovie")

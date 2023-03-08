@@ -64,6 +64,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         cell.overview.text = movie[indexPath.row].overview
         cell.layer.cornerRadius = 10
         cell.buttonfav.isHidden = true
+        cell.loaddata.isHidden = true
+        cell.loaddata.stopAnimating()
         var imageurl = "https://image.tmdb.org/t/p/w1280\(self.movie[indexPath.row].poster_path!)"
                   var url = URL(string: imageurl)
                   if let data = try? Data(contentsOf: url!){
