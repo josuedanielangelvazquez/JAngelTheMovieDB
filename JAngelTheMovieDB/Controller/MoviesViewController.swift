@@ -235,7 +235,10 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBAction func BurguerMenuAction(_ sender: Any) {
         let alert = UIAlertController(title: "What do you want to do?", message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "View Profile", style: .default){action in
-            self.Cambiosegues()
+            self.Cambiosegues(identificador: true)
+        })
+        alert.addAction(UIAlertAction(title: "Go to Favorites Movies", style: .default){action in
+            self.Cambiosegues(identificador: false)
         })
         alert.addAction(UIAlertAction(title: "Log out", style: .destructive){action in
             self.LogOutSession()
@@ -245,10 +248,16 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         self.present(alert, animated: true)
 
+        
     }
-    func Cambiosegues(){
-        performSegue(withIdentifier: "seguesProfile", sender: nil)
+    func Cambiosegues(identificador : Bool){
+        if identificador == true{
+            performSegue(withIdentifier: "seguesProfile", sender: nil)}
+            else{
+            performSegue(withIdentifier: "seguesFav", sender: nil)
+            }
+        }
     }
     
     
-}
+

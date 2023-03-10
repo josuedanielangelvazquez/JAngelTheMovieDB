@@ -29,6 +29,7 @@
 		FB857C0D29882F3100FB39E7 /* JAngelTheMovieDBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB857C0C29882F3100FB39E7 /* JAngelTheMovieDBTests.swift */; };
 		FB857C1729882F3100FB39E7 /* JAngelTheMovieDBUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB857C1629882F3100FB39E7 /* JAngelTheMovieDBUITests.swift */; };
 		FB857C1929882F3100FB39E7 /* JAngelTheMovieDBUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB857C1829882F3100FB39E7 /* JAngelTheMovieDBUITestsLaunchTests.swift */; };
+		FB9A839829BA562D00DE1B6D /* FavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9A839729BA562D00DE1B6D /* FavViewController.swift */; };
 		FBA90BA9299415540005E775 /* profileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA90BA8299415540005E775 /* profileViewModel.swift */; };
 		FBDFDA3A29B7C03C00F0EABD /* PersistenceMovies.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBDFDA3829B7C03C00F0EABD /* PersistenceMovies.xcdatamodeld */; };
 		FBEFAE8A298C39BD00B1C865 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEFAE89298C39BD00B1C865 /* MoviesViewController.swift */; };
@@ -86,6 +87,7 @@
 		FB857C1229882F3100FB39E7 /* JAngelTheMovieDBUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JAngelTheMovieDBUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB857C1629882F3100FB39E7 /* JAngelTheMovieDBUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JAngelTheMovieDBUITests.swift; sourceTree = "<group>"; };
 		FB857C1829882F3100FB39E7 /* JAngelTheMovieDBUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JAngelTheMovieDBUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FB9A839729BA562D00DE1B6D /* FavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavViewController.swift; sourceTree = "<group>"; };
 		FBA90BA8299415540005E775 /* profileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileViewModel.swift; sourceTree = "<group>"; };
 		FBDFDA3929B7C03C00F0EABD /* PersistenceMovies.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PersistenceMovies.xcdatamodel; sourceTree = "<group>"; };
 		FBEFAE89298C39BD00B1C865 /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
@@ -131,7 +133,6 @@
 				6C51855CB26E84A4DB304AEB /* Pods-JAngelTheMovieDBTests.debug.xcconfig */,
 				45DE28378A871037707D54C4 /* Pods-JAngelTheMovieDBTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -231,6 +232,7 @@
 				FBEFAE8B298C428900B1C865 /* PeliculasCollectionViewCell.swift */,
 				FB4621E8298DBA8300295C27 /* ProfileViewController.swift */,
 				FB0136A42992B5BF0017AF85 /* DetailViewController.swift */,
+				FB9A839729BA562D00DE1B6D /* FavViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -497,6 +499,7 @@
 				FB69D5C82989BAF40028D707 /* UsuarioViewModel.swift in Sources */,
 				FB752D3129886B8200E91038 /* MovieViewModel.swift in Sources */,
 				FB752D2D29883C7200E91038 /* Movie.swift in Sources */,
+				FB9A839829BA562D00DE1B6D /* FavViewController.swift in Sources */,
 				FB4621E7298D858B00295C27 /* OnTV.swift in Sources */,
 				FBA90BA9299415540005E775 /* profileViewModel.swift in Sources */,
 				FB0136A82992E0630017AF85 /* CompaniesProduccionCollectionViewCell.swift in Sources */,

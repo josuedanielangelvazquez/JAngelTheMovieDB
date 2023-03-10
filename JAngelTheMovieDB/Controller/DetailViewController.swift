@@ -9,7 +9,7 @@ import UIKit
 import Foundation
 class DetailViewController: UIViewController, UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource
 {
-    
+    var imageurl = ""
     @IBOutlet weak var ButtonAddFavMod: UIButton!
     @IBOutlet weak var postherimage: UIImageView!
     @IBOutlet weak var Titlelbl: UILabel!
@@ -18,7 +18,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     @IBOutlet weak var AdultBolllbl: UILabel!
     @IBOutlet weak var originallenguagelbl: UILabel!
     @IBOutlet weak var overviewlbl: UILabel!
-    
+    @IBOutlet weak var ButtonFavoritepersistence: UIButton!
     @IBOutlet weak var loaddata: UIActivityIndicatorView!
     
     
@@ -29,6 +29,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     let movieViewModel = MovieViewModel()
     let ontvviewmodel = OnTVViewModel()
     var productionCompanies = [ProductionCompanies]()
+    var movies = [Movie]()
     
     
     override func viewDidLoad() {
@@ -41,23 +42,20 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         
         self.collectionView.register(UINib(nibName: "CompaniesProduccionCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "ProductionCompaniescell")
         
-        
+    
         loadData()
         
     }
     
     @IBAction func AddFavoritemMoviesPersistence(_ sender: Any) {
-        let MovieModel = Movie(id: IdDetail, release_date: releaseDatelbl.text!, title: Titlelbl.text!, vote_average: Double(voteAvaragelbl.text!)!, overview: overviewlbl.text!)
-      let MovieViewmodel =  movieViewModel.PersistenceAddFavMovies(Movie: MovieModel)
-        if MovieViewmodel == true {
-            let alert =   UIAlertController(title: "Correct", message: "Se agrego correctamente", preferredStyle: .alert)
-               alert.addAction(UIAlertAction(title: "Ok", style: .default))
-               self.present(alert, animated: true)
-        }
+        let getval = getallfavpersistence()
+        if getval == true{
+            let alert = UIAlertController(title: "Error", message: "Ya esta en favoritos", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "oK", style: .default))
+            self.present(alert, animated: false)
+            }
         else{
-            let alert =   UIAlertController(title: "Correct", message: "Se agrego correctamente", preferredStyle: .alert)
-               alert.addAction(UIAlertAction(title: "Ok", style: .default))
-               self.present(alert, animated: true)
+            addfavPersistence()
         }
     }
     
@@ -66,26 +64,59 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     @IBAction func AddFaoritesmovies(_ sender: Any) {
         let modeladdfavorite = AddFavoriteMovie(media_type: "movie", media_id: IdDetail, favorite: true)
         
-      let result = movieViewModel.addfavMovies(Moviemodel: modeladdfavorite) { ObjectMovie in
-          DispatchQueue.main.async {
-              if ObjectMovie.success == false {
-               let alert =   UIAlertController(title: "Error", message: "Sucedio un Error, Intentalo mas tarde", preferredStyle: .alert)
-                  alert.addAction(UIAlertAction(title: "Ok", style: .default))
-                  self.present(alert, animated: true)
-              }
-              else{
-                  let alert =   UIAlertController(title: "Correct", message: "\(self.Titlelbl.text!) se agrego a favoritos", preferredStyle: .alert)
-                     alert.addAction(UIAlertAction(title: "Ok", style: .default))
-                     self.present(alert, animated: true)
-              }
-          }
-         
+        let result = movieViewModel.addfavMovies(Moviemodel: modeladdfavorite) { ObjectMovie in
+            DispatchQueue.main.async {
+                if ObjectMovie.success == false {
+                    let alert =   UIAlertController(title: "Error", message: "Sucedio un Error, Intentalo mas tarde", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                    self.present(alert, animated: true)
+                }
+                else{
+                    let alert =   UIAlertController(title: "Correct", message: "\(self.Titlelbl.text!) se agrego a favoritos", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                    self.present(alert, animated: true)
+                }
+            }
+            
+        }
+    }
+    
+    func getallfavpersistence()->Bool{
+        var existe = false
+        self.movies = movieViewModel.PersistenceGetFavorites() as! [Movie]
+        for objectmovie in movies{
+            print(IdDetail)
+            print(objectmovie.id)
+            if objectmovie.id == IdDetail{
+                existe = true
+            }
+            else
+            {
+                existe = false
+            }
+        }
+        return existe
+
+    }
+    func addfavPersistence(){
+        let MovieModel = Movie(id: IdDetail, poster_path: imageurl, release_date: releaseDatelbl.text!, title: Titlelbl.text!, vote_average: Double(voteAvaragelbl.text!)!, overview: overviewlbl.text!)
+      let MovieViewmodel =  movieViewModel.PersistenceAddFavMovies(Movie: MovieModel)
+        if MovieViewmodel == true {
+            let alert =   UIAlertController(title: "Correct", message: "Se agrego correctamente", preferredStyle: .alert)
+               alert.addAction(UIAlertAction(title: "Ok", style: .default))
+               self.present(alert, animated: true)
+        }
+        else{
+            let alert =   UIAlertController(title: "Correct", message: "Ocurrion un Error, Intentalo mas tarde", preferredStyle: .alert)
+               alert.addAction(UIAlertAction(title: "Ok", style: .default))
+               self.present(alert, animated: true)
         }
     }
     
     func loadData(){
         if segues != ""{
             ButtonAddFavMod.isHidden = true
+            ButtonFavoritepersistence.isHidden = true
         }
         else {
             ButtonAddFavMod.isHidden = false
@@ -97,7 +128,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
                     DispatchQueue.main.async {
                         self.loaddata.isHidden = true
                         self.loaddata.stopAnimating() 
-                        let imageurl = "https://image.tmdb.org/t/p/w1280\(MovieDetail.poster_path!)"
+                        imageurl = "https://image.tmdb.org/t/p/w1280\(MovieDetail.poster_path!)"
                         let url = URL(string: imageurl)
                         if let data = try? Data(contentsOf: url!){
                             self.postherimage.image = UIImage(data: data)
@@ -125,7 +156,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         else{
             ButtonAddFavMod.isHidden = true
             ontvviewmodel.getOnTvById(IdOntV: IdDetail) { OnTVDetail in
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [self] in
                     self.loaddata.isHidden = true
                     self.Titlelbl.text = OnTVDetail.name
                     self.releaseDatelbl.text = OnTVDetail.first_air_date
@@ -133,7 +164,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
                     self.AdultBolllbl.text = "No. episodios:  \(OnTVDetail.number_of_episodes)"
                     self.originallenguagelbl.text = "No. temporadas: \(OnTVDetail.number_of_seasons)"
                     self.overviewlbl.text = OnTVDetail.overview
-                    let imageurl = "https://image.tmdb.org/t/p/w1280\(OnTVDetail.poster_path!)"
+                     imageurl = "https://image.tmdb.org/t/p/w1280\(OnTVDetail.poster_path!)"
                     let url = URL(string: imageurl)
                     if let data = try? Data(contentsOf: url!){
                         self.postherimage.image = UIImage(data: data)

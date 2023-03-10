@@ -224,11 +224,69 @@
                         <outlet property="collectionView" destination="MLa-Cv-09e" id="k3q-0F-gx3"/>
                         <segue destination="EIL-kv-Uxh" kind="showDetail" identifier="seguesProfile" id="cYA-wD-QdP"/>
                         <segue destination="xq9-X8-zCw" kind="showDetail" identifier="seguesmovie" id="Dve-38-qAe"/>
+                        <segue destination="sf1-1x-f5L" kind="showDetail" identifier="seguesFav" id="seM-tM-wTv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ChI-Uj-Xpq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1866.1538461538462" y="10.663507109004739"/>
+        </scene>
+        <!--Fav View Controller-->
+        <scene sceneID="xB9-EF-mgc">
+            <objects>
+                <viewController id="sf1-1x-f5L" customClass="FavViewController" customModule="JAngelTheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eMp-l3-hbV">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="863"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favoritos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfC-Uf-SNq">
+                                <rect key="frame" x="95" y="71" width="240" height="37"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XFh-Od-qzc">
+                                <rect key="frame" x="22" y="146" width="386" height="706"/>
+                                <color key="backgroundColor" red="0.047058824450000002" green="0.082352943720000002" blue="0.1019607931" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Hqb-RS-8Pf">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="8W7-Ov-ODf">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="np1-Ox-aXf">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Wt-NL-Wz5"/>
+                        <color key="backgroundColor" red="0.047058824450000002" green="0.082352943720000002" blue="0.1019607931" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="6Wt-NL-Wz5" firstAttribute="trailing" secondItem="gfC-Uf-SNq" secondAttribute="trailing" constant="95" id="2l0-qn-6Ds"/>
+                            <constraint firstItem="XFh-Od-qzc" firstAttribute="leading" secondItem="6Wt-NL-Wz5" secondAttribute="leading" constant="22" id="4ax-Le-43T"/>
+                            <constraint firstItem="gfC-Uf-SNq" firstAttribute="leading" secondItem="6Wt-NL-Wz5" secondAttribute="leading" constant="95" id="EfG-si-XYV"/>
+                            <constraint firstItem="6Wt-NL-Wz5" firstAttribute="bottom" secondItem="XFh-Od-qzc" secondAttribute="bottom" constant="11" id="MHA-5a-7Om"/>
+                            <constraint firstItem="6Wt-NL-Wz5" firstAttribute="trailing" secondItem="XFh-Od-qzc" secondAttribute="trailing" constant="22" id="an0-B2-n0b"/>
+                            <constraint firstItem="XFh-Od-qzc" firstAttribute="top" secondItem="gfC-Uf-SNq" secondAttribute="bottom" constant="38" id="itB-eA-etB"/>
+                            <constraint firstItem="gfC-Uf-SNq" firstAttribute="top" secondItem="6Wt-NL-Wz5" secondAttribute="top" constant="12" id="kfp-5n-87d"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="WPu-9U-POt"/>
+                    <connections>
+                        <outlet property="favCollectionView" destination="XFh-Od-qzc" id="le4-kc-PXP"/>
+                        <segue destination="xq9-X8-zCw" kind="showDetail" identifier="seguesdetailpersistence" id="DFl-bm-5Ev"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mip-3C-td7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1869.7674418604652" y="-917.38197424892712"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="9mA-Ag-K4h">
@@ -394,6 +452,7 @@
                     <connections>
                         <outlet property="AdultBolllbl" destination="kET-m1-Gr3" id="VSE-a2-3Qb"/>
                         <outlet property="ButtonAddFavMod" destination="jcC-ND-6rF" id="kVg-Qs-Iby"/>
+                        <outlet property="ButtonFavoritepersistence" destination="cpm-2R-6Gg" id="ojf-Qj-5cO"/>
                         <outlet property="CollectionView" destination="rF2-7f-yc4" id="qa3-JE-pe8"/>
                         <outlet property="Titlelbl" destination="Jle-PI-A45" id="EfR-Cm-We2"/>
                         <outlet property="loaddata" destination="xXu-2R-t80" id="K83-cA-ckP"/>
@@ -406,7 +465,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3cQ-gT-Wyn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2627.4418604651164" y="-654.07725321888415"/>
+            <point key="canvasLocation" x="3483" y="-747"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="7lf-H6-cUh">
@@ -543,7 +602,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Dve-38-qAe"/>
+        <segue reference="DFl-bm-5Ev"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="TheMovieImage" width="256" height="256"/>

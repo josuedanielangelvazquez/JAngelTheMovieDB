@@ -58,6 +58,7 @@ class MovieViewModel{
         let moviedetail : MovieDetail? = nil
         let urlSession = URLSession.shared
         let url = URL(string: "https://api.themoviedb.org/3/movie/\(idMovie)?api_key=9a12fe4896e3bf5b77905c0eefa45759&language=en-US")
+        print(url)
         do{
             try urlSession.dataTask(with: url!){
                 data, response, error in
@@ -133,36 +134,38 @@ class MovieViewModel{
         }
     }
     
-    func PersistenceGetFavorites()->Bool{
+    func PersistenceGetFavorites()->[Movie]?{
+        var ObjectMovies = [Movie]()
         let context = appdelegate.persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "PersistenceMovies")
         
         do{
-            let movies = [Movies]()
-            let moviess = try context.fetch(request)
+            
+            let movies = try context.fetch(request)
+//            var movies = [Movies]()
             for objetosmovies in  movies as! [NSManagedObject]{
-                let MovieiD = objetosmovies.value(forKey: "idmovie")
-                let Title = objetosmovies.value(forKey: "title")
-                let overview = objetosmovies.value(forKey: "overview")
-                let postherPath = objetosmovies.value(forKey: "postherPath")
-                let releaseDate = objetosmovies.value(forKey: "releaseDate")
-                let vote_average = objetosmovies.value(forKey: "vote_average")
+                var movie = Movie(id: 0, release_date: "", title: "", vote_average: 0.0, overview: "")
+                movie.id = objetosmovies.value(forKey: "idmovie") as! Int
+                movie.title = objetosmovies.value(forKey: "title") as! String
+                movie.overview = objetosmovies.value(forKey: "overview") as! String
+                movie.poster_path = objetosmovies.value(forKey: "postherPath") as! String
+                movie.release_date = objetosmovies.value(forKey: "releaseDate") as! String
+                movie.vote_average = objetosmovies.value(forKey: "vote_average") as! Double
                 
-                var Movie = try! Movie(id: MovieiD as! Int, release_date: releaseDate as! String, title: Title as! String, vote_average: vote_average as! Double, overview: overview as! String)
+                ObjectMovies.append(movie)
                 
                 
             }
+            return ObjectMovies
         }
         catch let error{
+            
+            print("Erro al obtener la informacion")
             print(error.localizedDescription)
-            return false
+            return nil
         }
         
-        
-        
-        
-        return true
-    }
+        }
     
     func addfavMovies(Moviemodel : AddFavoriteMovie, ValMovieFav : @escaping(MovieFavoriteVal)->Void){
         DispatchQueue.main.async {
@@ -184,7 +187,33 @@ class MovieViewModel{
         }
         
         
+        
     }
+    func Delete(idDrink : Int)-> Bool{
+        var correct = true
+        let context = appdelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "PersistenceMovies")
+        
+        do{
+            let movies  = try context.fetch(request)
+            let movie  = movies[idDrink] as! NSManagedObject
+            context.delete(movie)
+            do{
+                try context.save()
+            }catch{
+                let Error = error as NSError
+                print(Error)
+            }
+            correct = true
+           
+        } catch let error{
+           print(error.localizedDescription)
+            correct = false
+        }
+        return correct
+    }
+    
+
    
 }
 

@@ -25,7 +25,6 @@ class ViewController: UIViewController {
     var UsuarioLoguin = UsuarioViewModel()
    
     override func viewDidLoad() {
-        Passwordlbl.text = "vvcrcd"
         Passwordlbl.isSecureTextEntry = true
         super.viewDidLoad()
         load.isHidden = true
