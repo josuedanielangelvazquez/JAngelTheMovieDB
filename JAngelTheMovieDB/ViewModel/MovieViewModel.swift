@@ -11,7 +11,31 @@ import UIKit
 class MovieViewModel{
     let appdelegate = UIApplication.shared.delegate as! AppDelegate
     
-
+    func getvideosMovies(IdMovie: Int, VideosMovie : @escaping(Videos?)->(Void)){
+        let urlSession = URLSession.shared
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(IdMovie)/videos?api_key=9a12fe4896e3bf5b77905c0eefa45759&language=en-US")
+        urlSession.dataTask(with: url!){
+            data, response, error in
+            if let safedata = data{
+                let json = self.parseVideos(data: safedata)
+                VideosMovie(json)
+            }
+        }.resume()
+    }
+    
+    func parseVideos(data: Data)->Videos?{
+        let decodable = JSONDecoder()
+        do{
+            let request = try decodable.decode(Videos.self, from: data)
+            let videos = Videos(results: request.results)
+            return videos
+        }
+        catch let error{
+            print("error al decodificar")
+            print(error.localizedDescription)
+            return nil
+        }
+    }
     func getPopular(Movie : @escaping (Movies)->Void){
         let moviemodel : Movie? = nil
         let urlSession = URLSession.shared

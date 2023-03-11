@@ -244,7 +244,7 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
             self.LogOutSession()
             
         })
-        alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
         self.present(alert, animated: true)
 

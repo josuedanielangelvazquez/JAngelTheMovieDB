@@ -81,6 +81,11 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         }
     }
     
+    
+    @IBAction func seguesmovies(_ sender: Any) {
+        performSegue(withIdentifier: "Seguesvideos", sender: nil)
+    }
+    
     func getallfavpersistence()->Bool{
         var existe = false
         self.movies = movieViewModel.PersistenceGetFavorites() as! [Movie]
@@ -182,6 +187,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         productionCompanies.count
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductionCompaniescell", for: indexPath as IndexPath) as! CompaniesProduccionCollectionViewCell
         cell.layer.cornerRadius = 10
@@ -205,9 +211,15 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
 
         }
         
-    return cell}}
-    
+    return cell}
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Seguesvideos"{
+            let detail = segue.destination as! VideoViewController2
 
+        }
+    }
+}
+    
     /*
     // MARK: - Navigation
 

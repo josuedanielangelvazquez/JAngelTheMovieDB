@@ -46,3 +46,10 @@ struct MovieFavoriteVal: Codable{
         let status_message : String
     }
 
+struct Videos: Codable{
+    let results : [results]
+}
+
+struct results : Codable{
+    let key: String
+}

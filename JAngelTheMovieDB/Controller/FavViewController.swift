@@ -64,18 +64,18 @@ class FavViewController: UIViewController, UICollectionViewDelegate, UICollectio
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let alert = UIAlertController(title: "¿Que deseas hacer?", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Detalles", style: .default){action in
+        let alert = UIAlertController(title: "¿select an option?", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Details", style: .default){action in
             self.IdDetail = self.ObjectsMovies[indexPath.row].id
             self.performSegue(withIdentifier: "seguesdetailpersistence", sender: nil)
             
         })
-        alert.addAction(UIAlertAction(title: "Eliminar", style: .destructive){
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive){
             action in
             self.deletemovie(posicion: indexPath.row)
             self.viewWillAppear(true)
         })
-        alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
         present(alert, animated: true)
         
