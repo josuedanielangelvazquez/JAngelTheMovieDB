@@ -21,6 +21,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     @IBOutlet weak var ButtonFavoritepersistence: UIButton!
     @IBOutlet weak var loaddata: UIActivityIndicatorView!
     
+    @IBOutlet weak var PlayMovies: UIButton!
     
     @IBOutlet  var collectionView: UICollectionView!
     var segues = ""
@@ -84,6 +85,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     
     @IBAction func seguesmovies(_ sender: Any) {
         performSegue(withIdentifier: "Seguesvideos", sender: nil)
+        
     }
     
     func getallfavpersistence()->Bool{
@@ -159,6 +161,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
             
         }
         else{
+            PlayMovies.isHidden = true
             ButtonAddFavMod.isHidden = true
             ontvviewmodel.getOnTvById(IdOntV: IdDetail) { OnTVDetail in
                 DispatchQueue.main.async { [self] in
@@ -215,10 +218,13 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Seguesvideos"{
             let detail = segue.destination as! VideoViewController2
+            detail.videoId = IdDetail
 
         }
     }
+    
 }
+
     
     /*
     // MARK: - Navigation

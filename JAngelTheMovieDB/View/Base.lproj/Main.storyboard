@@ -474,6 +474,7 @@
                         <outlet property="AdultBolllbl" destination="z77-qk-W9T" id="Azt-F5-VuB"/>
                         <outlet property="ButtonAddFavMod" destination="t7F-H9-Ruz" id="mAh-CU-9ae"/>
                         <outlet property="ButtonFavoritepersistence" destination="vPK-dy-rpA" id="0Xs-Hx-o6o"/>
+                        <outlet property="PlayMovies" destination="kKz-xf-4x6" id="zEJ-TI-HhZ"/>
                         <outlet property="Titlelbl" destination="NqF-SZ-Bhn" id="7Nx-2J-v2Q"/>
                         <outlet property="collectionView" destination="IyE-Sd-zha" id="vom-BW-99O"/>
                         <outlet property="loaddata" destination="xXu-2R-t80" id="K83-cA-ckP"/>
@@ -498,13 +499,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="x9H-gR-cwh">
-                                <rect key="frame" x="39" y="115" width="361" height="702"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <rect key="frame" x="10" y="115" width="410" height="702"/>
+                                <color key="backgroundColor" red="0.047058824450000002" green="0.082352943720000002" blue="0.1019607931" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="361" id="2Hz-NH-IfV"/>
                                     <constraint firstAttribute="height" constant="702" id="8BC-v1-n1j"/>
+                                    <constraint firstAttribute="width" constant="410" id="Mhl-4c-3kC"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="N9c-Fs-JNy">
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="N9c-Fs-JNy">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -523,12 +524,12 @@
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="huS-gJ-HPn"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.047058824450000002" green="0.082352943720000002" blue="0.1019607931" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="huS-gJ-HPn" firstAttribute="trailing" secondItem="x9H-gR-cwh" secondAttribute="trailing" constant="10" id="AIc-ro-QiV"/>
                             <constraint firstItem="huS-gJ-HPn" firstAttribute="bottom" secondItem="x9H-gR-cwh" secondAttribute="bottom" constant="46" id="Idd-1q-G86"/>
+                            <constraint firstItem="x9H-gR-cwh" firstAttribute="leading" secondItem="huS-gJ-HPn" secondAttribute="leading" constant="10" id="ZSw-Td-ISb"/>
                             <constraint firstItem="x9H-gR-cwh" firstAttribute="top" secondItem="bwU-IG-hP0" secondAttribute="topMargin" constant="56" id="egp-y8-xi7"/>
-                            <constraint firstItem="x9H-gR-cwh" firstAttribute="leading" secondItem="huS-gJ-HPn" secondAttribute="leading" constant="39" id="f2c-Pg-CQW"/>
-                            <constraint firstItem="huS-gJ-HPn" firstAttribute="trailing" secondItem="x9H-gR-cwh" secondAttribute="trailing" constant="30" id="vPl-jn-QGI"/>
                         </constraints>
                     </view>
                     <connections>
@@ -685,9 +686,6 @@
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="suit.heart.fill" catalog="system" width="128" height="107"/>
         <image name="|" width="128" height="128"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

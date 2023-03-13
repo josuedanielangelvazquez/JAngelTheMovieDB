@@ -229,6 +229,8 @@
 		FB857C27298832C800FB39E7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FB082F8429BBC8A40057F090 /* VideoViewController2.swift */,
+				FB082F8629BBC9EC0057F090 /* pruebacellCollectionViewCell.swift */,
 				FB0136A62992E0630017AF85 /* CompaniesProduccionCollectionViewCell.swift */,
 				FB857BF929882F3000FB39E7 /* ViewController.swift */,
 				FBEFAE89298C39BD00B1C865 /* MoviesViewController.swift */,
@@ -246,8 +248,6 @@
 				FB857BFB29882F3000FB39E7 /* Main.storyboard */,
 				FBFF0F35298C4413002D5B94 /* PeliculasCollectionViewCell.xib */,
 				FB0136A72992E0630017AF85 /* CompaniesProduccionCollectionViewCell.xib */,
-				FB082F8429BBC8A40057F090 /* VideoViewController2.swift */,
-				FB082F8629BBC9EC0057F090 /* pruebacellCollectionViewCell.swift */,
 				FB082F8729BBC9EC0057F090 /* pruebacellCollectionViewCell.xib */,
 			);
 			path = View;

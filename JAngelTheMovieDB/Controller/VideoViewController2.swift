@@ -10,11 +10,8 @@ import youtube_ios_player_helper
 class VideoViewController2: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     var movieviewmodel = MovieViewModel()
     var TrailersMovies = [results]()
-    var videoId = ""
-    @IBOutlet weak var Youtube: YTPlayerView!
-    
-    @IBOutlet weak var Youtube2: YTPlayerView!
-    
+    var videoId = 0
+
     @IBOutlet weak var VideosCollectionVIew: UICollectionView!
     
     override func viewDidLoad() {
@@ -28,7 +25,7 @@ class VideoViewController2: UIViewController, UICollectionViewDelegate, UICollec
         loadData()
     }
     func loadData(){
-        movieviewmodel.getvideosMovies(IdMovie: 315162) { [self] ObjectsVideos in
+        movieviewmodel.getvideosMovies(IdMovie: videoId) { [self] ObjectsVideos in
             DispatchQueue.main.async {
                 if ObjectsVideos?.results != nil{
                     TrailersMovies = ObjectsVideos?.results as! [results]
@@ -44,8 +41,6 @@ class VideoViewController2: UIViewController, UICollectionViewDelegate, UICollec
     func startvideo(){
             let playerVars : [AnyHashable : Any] = ["playsinline":1, "controls":1, "autohide":1, "showinfo":0, "modesbranding":0]
             
-                Youtube.load(withVideoId: videoId, playerVars: playerVars)
-        Youtube2.load(withVideoId: videoId, playerVars: playerVars)
         }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         TrailersMovies.count
